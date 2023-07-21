@@ -84,8 +84,8 @@ MonoBehaviour:
   m_MaxDollyOut: 5000
   m_MinimumDistance: 20
   m_MaximumDistance: 100
-  m_MinimumFOV: 1
-  m_MaximumFOV: 70
+  m_MinimumFOV: 60
+  m_MaximumFOV: 80
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
 --- !u!1 &5794058902564920651
@@ -116,7 +116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5794058902564920651}
   m_LocalRotation: {x: 0.6360782, y: -0, z: -0, w: 0.7716246}
-  m_LocalPosition: {x: 2.4093528, y: 10.299503, z: 3.8210306}
+  m_LocalPosition: {x: -1.10114, y: 7.9264812, z: 4.5516777}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,7 +148,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 70
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -251,6 +251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5794058902605509757}
   - component: {fileID: 5794058902605509762}
+  - component: {fileID: 2001090177}
   m_Layer: 0
   m_Name: TargetGroup1
   m_TagString: Untagged
@@ -266,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5794058902605509763}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.1938596, y: -12.709316, z: 8.924478}
+  m_LocalPosition: {x: -1.34864, y: -13.669316, z: 8.749477}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -301,6 +302,26 @@ MonoBehaviour:
   - target: {fileID: 0}
     weight: 1
     radius: 2
+--- !u!114 &2001090177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794058902605509763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2b24950caf0234ca3d76c21a1c6747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Comment: 'Weights:
+
+    - Whomever is too far away will have a weight of 0 and
+    the camera will stop tracking them as part of the gorup. (see CameraManager for
+    adjusting the distance).
+
+    - Whomever has the crown will have a weight of
+    10 so the main camera will always focus on it.'
 --- !u!1 &5794058903480448918
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5794058903480448918}
   m_LocalRotation: {x: 0.6360782, y: -0, z: -0, w: 0.7716246}
-  m_LocalPosition: {x: 2.4093528, y: 10.299503, z: 3.8210306}
+  m_LocalPosition: {x: -1.10114, y: 7.9264812, z: 4.5516777}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -439,3 +460,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGroup: {fileID: 5794058902605509762}
+  breakAwayDistance: 30

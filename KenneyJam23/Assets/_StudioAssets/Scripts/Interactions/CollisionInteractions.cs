@@ -73,8 +73,8 @@ namespace RubberDucks.KenneyJam.Interactions
             {
                 if (transform.childCount > 0)
                 {
+                    Destroy(m_CurrentPickup.gameObject);
                     m_CurrentPickup = null;
-                    Destroy(transform.GetChild(0).gameObject);
                 }
             }
             //Dropping from player interaction
@@ -85,7 +85,7 @@ namespace RubberDucks.KenneyJam.Interactions
                 m_CurrentPickup.transform.parent = null;
 
                 m_CurrentPickup = null;
-            }           
+            }
         }
 
         private void CollectItem(bool isZone, GameObject zone)
@@ -100,7 +100,7 @@ namespace RubberDucks.KenneyJam.Interactions
                 }
             }
             else
-            {           
+            {
                 zone.transform.SetParent(this.transform);
 
                 m_CurrentPickup = zone;
