@@ -47,6 +47,11 @@ namespace RubberDucks.KenneyJam.Level
         [SerializeField] private Texture2D m_ActivePathTexture = default;
         [Range(0.0f, 1.0f)][SerializeField] private float m_PathColourCutoff = 0.2f;
 
+        [Header("Tree Information For Registration")]
+        [SerializeField] private Transform TreeParent = default;
+
+        private Dictionary<Vector2Int, LevelForestCollider> m_ColliderGrid = new Dictionary<Vector2Int, LevelForestCollider>();
+
         //--- Unity Methods ---//
 
         //--- Public Methods ---//
@@ -74,6 +79,11 @@ namespace RubberDucks.KenneyJam.Level
 
                     SphereCollider capsule = Instantiate<SphereCollider>(m_ColliderPrefab, spawnPosition, Quaternion.identity, m_ColliderParent);
                     capsule.radius = capsuleRadius;
+
+                    Vector2Int spawnCoords = new Vector2Int(x, y);
+                    LevelForestCollider forestComp = capsule.GetComponent<LevelForestCollider>();
+
+                    m_ColliderGrid.Add(spawnCoords, forestComp);
                 }
 			}
 		}
@@ -82,6 +92,7 @@ namespace RubberDucks.KenneyJam.Level
 		public void ClearCapsules()
 		{
             m_ColliderParent.DestroyChildren();
+            m_ColliderGrid.Clear();
         }
 
         [ContextMenu("CullCapsules")]
@@ -109,6 +120,33 @@ namespace RubberDucks.KenneyJam.Level
                 else
                 {
                     Destroy(tree);
+                }
+            }
+        }
+
+        [ContextMenu("RegisterTreesToCapsules()")]
+        public void RegisterTreesToCapsules()
+        {
+            for (int i = 0; i < TreeParent.childCount; ++i)
+            {
+                GameObject tree = TreeParent.GetChild(i).gameObject;
+
+                // Determine the x and y index of the tree and assign it to the appropriate capsule
+                float percentX = Mathf.InverseLerp(m_BottomLeftBoxCorner.position.x, m_TopRightBoxCorner.position.x, tree.transform.position.x);
+                float percentY = Mathf.InverseLerp(m_BottomLeftBoxCorner.position.z, m_TopRightBoxCorner.position.z, tree.transform.position.z);
+
+                int coordX = Mathf.FloorToInt(percentX * m_NumSamplesPerAxis);
+                int coordY = Mathf.FloorToInt(percentY * m_NumSamplesPerAxis);
+                Vector2Int coord = new Vector2Int(coordX, coordY);
+
+                if (m_ColliderGrid.ContainsKey(coord)) 
+                {
+                    m_ColliderGrid[coord].RegisterTreeAsChild(tree);
+                    i--;
+                }
+                else
+                {
+                    Debug.LogError($"Tree {tree.name} at position {tree.transform.position} could not be added to grid with coord {coord}");
                 }
             }
         }

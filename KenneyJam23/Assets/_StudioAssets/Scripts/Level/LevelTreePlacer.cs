@@ -64,7 +64,7 @@ namespace RubberDucks.KenneyJam.Level
 		{
 			m_SpawnedTreeParent.DestroyChildren();
 		}
-		
+
 		//--- Protected Methods ---//
 		
 		//--- Private Methods ---//
