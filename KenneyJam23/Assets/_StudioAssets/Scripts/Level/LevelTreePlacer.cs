@@ -38,10 +38,10 @@ namespace RubberDucks.KenneyJam.Level
 		[SerializeField] private Vector2 m_TreeScaleRange = new Vector2(0.8f, 1.2f);
 		[SerializeField] private Vector2 m_TreeRotYRange = new Vector2(0.0f, 360.0f);
 
-		[Header("Tree Spawning")]
-		[Range(0, 10000)][SerializeField] private int m_NumTreesToSpawn = 500;
-		[SerializeField] private Transform m_BottomLeftBoxCorner = default;
-		[SerializeField] private Transform m_TopRightBoxCorner = default;
+		[Header("Tree Spawning")] // TODO Dan: Made some things public for ease of assigning data from the auto-generator but should have getters/
+        [HideInInspector][Range(0, 10000)][SerializeField] public int m_NumTreesToSpawn = 500;
+		[HideInInspector][SerializeField] public Transform m_BottomLeftBoxCorner = default;
+		[HideInInspector][SerializeField] public Transform m_TopRightBoxCorner = default;
 		[SerializeField] private Transform m_SpawnedTreeParent = default;
 		[SerializeField] private List<GameObject> m_TreePrefabs = default;
 
@@ -79,10 +79,11 @@ namespace RubberDucks.KenneyJam.Level
 			float spawnRotationY = m_TreeRotYRange.RandValBetweenXAndY();
 			Quaternion spawnRotation = Quaternion.Euler(0.0f, spawnRotationY, 0.0f);
 
-			float spawnScale = m_TreeRotYRange.RandValBetweenXAndY();
+			float spawnScale = m_TreeScaleRange.RandValBetweenXAndY();
 			Vector3 spawnScaleVec = Vector3.one * spawnScale;
 
-			Instantiate(treePrefabToSpawn, spawnPosition, spawnRotation, m_SpawnedTreeParent);
+			GameObject tree = Instantiate(treePrefabToSpawn, spawnPosition, spawnRotation, m_SpawnedTreeParent);
+			tree.transform.localScale = Vector3.one * spawnScale;
 		}
 	}
 }

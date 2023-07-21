@@ -33,19 +33,19 @@ namespace RubberDucks.KenneyJam.Level
 		//--- Protected Variables ---//
 
 		//--- Private Variables ---//
-		[Header("Level Information")]
-		[SerializeField] private Transform m_BottomLeftBoxCorner = default;
-		[SerializeField] private Transform m_TopRightBoxCorner = default;
+		[Header("Level Information")] // TODO Dan: Made some things public for ease of assigning data from the auto-generator but should have getters/
+        [HideInInspector][SerializeField] public Transform m_BottomLeftBoxCorner = default;
+		[HideInInspector][SerializeField] public Transform m_TopRightBoxCorner = default;
 
 		[Header("Spawning Information")]
-		[Range(0, 50)][SerializeField] private int m_NumSamplesPerAxis = 25;
+        [HideInInspector][Range(0, 50)][SerializeField] public int m_NumSamplesPerAxis = 25;
 		[SerializeField] private Transform m_ColliderParent = default;
         //[SerializeField] private CapsuleCollider m_ColliderPrefab = default;
         [SerializeField] private SphereCollider m_ColliderPrefab = default;
 
 		[Header("Culling Information")]
-        [SerializeField] private Texture2D m_ActivePathTexture = default;
-        [Range(0.0f, 1.0f)][SerializeField] private float m_PathColourCutoff = 0.2f;
+        [HideInInspector][SerializeField] public Texture2D m_ActivePathTexture = default;
+        [HideInInspector][Range(0.0f, 1.0f)][SerializeField] public float m_PathColourCutoff = 0.2f;
 
         [Header("Tree Information For Registration")]
         [SerializeField] private Transform TreeParent = default;

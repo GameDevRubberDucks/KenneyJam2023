@@ -32,14 +32,14 @@ namespace RubberDucks.KenneyJam.Level
 		//--- Protected Variables ---//
 
 		//--- Private Variables ---//
-		[Header("Level References")]
-		[SerializeField] private Transform m_BottomLeftBoxCorner = default;
-        [SerializeField] private Transform m_TopRightBoxCorner = default;
+		[Header("Level References")] // TODO Dan: Made some things public for ease of assigning data from the auto-generator but should have getters/setters instead!
+		[SerializeField] public Transform m_BottomLeftBoxCorner = default;
+        [SerializeField] public Transform m_TopRightBoxCorner = default;
 		[SerializeField] private Transform m_SpawnedTreeParent = default;
 
 		[Header("Textures")]
-		[SerializeField] private Texture2D m_ActivePathTexture = default;
-		[Range(0.0f, 1.0f)][SerializeField] private float m_PathColourCutoff = 0.2f;
+		[SerializeField] public Texture2D m_ActivePathTexture = default;
+		[Range(0.0f, 1.0f)][SerializeField] public float m_PathColourCutoff = 0.2f;
 
 		//--- Unity Methods ---//
 
