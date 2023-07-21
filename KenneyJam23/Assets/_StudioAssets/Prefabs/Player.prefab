@@ -186,9 +186,10 @@ GameObject:
   - component: {fileID: 2410998985746952555}
   - component: {fileID: 2410998985746952554}
   - component: {fileID: 2410998985746952556}
+  - component: {fileID: 6146259549629782484}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,10 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0359e6729251ee84aa5036d108b3b89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MoveSpeed: 0.05
   m_Acceleration: 300
-  m_BreakForce: 1000
-  maxTurnAngle: 45
 --- !u!54 &2410998985746952554
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -258,6 +256,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.61
   m_Center: {x: 0, y: 1.7, z: 0}
+--- !u!114 &6146259549629782484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2410998985746952553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462f3a38cd8664440be8a063a6931ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CurrentPickup: {fileID: 0}
 --- !u!1 &2640811067613911220
 GameObject:
   m_ObjectHideFlags: 0
