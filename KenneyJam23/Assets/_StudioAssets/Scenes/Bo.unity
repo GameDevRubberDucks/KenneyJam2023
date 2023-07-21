@@ -786,6 +786,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2001090174 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5794058902605509763, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
+  m_PrefabInstance: {fileID: 5794058903490364157}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2001090177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001090174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2b24950caf0234ca3d76c21a1c6747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Comment: 'Weights:
+
+    - Whomever is too far away will have a weight of 0 and
+    the camera will stop tracking them as part of the gorup. (see CameraManager for
+    adjusting the distance).
+
+    - Whomever has the crown will have a weight of
+    10 so the main camera will always focus on it.'
 --- !u!1 &2138677391
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,9 +933,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1045000053, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
+      propertyPath: breakAwayDistance
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794058902564920646, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
+      propertyPath: field of view
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 5794058902564920646, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
       propertyPath: near clip plane
       value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794058902564920650, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.4093528
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794058902564920650, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.299503
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794058902564920650, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.8210306
       objectReference: {fileID: 0}
     - target: {fileID: 5794058902605509762, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
       propertyPath: m_Targets.Array.data[0].target
@@ -928,6 +973,14 @@ PrefabInstance:
       propertyPath: m_Targets.Array.data[3].target
       value: 
       objectReference: {fileID: 784494844}
+    - target: {fileID: 5794058903480448912, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.299503
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794058903480448912, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.8210306
+      objectReference: {fileID: 0}
     - target: {fileID: 5794058903527550345, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
       propertyPath: m_RootOrder
       value: 6
