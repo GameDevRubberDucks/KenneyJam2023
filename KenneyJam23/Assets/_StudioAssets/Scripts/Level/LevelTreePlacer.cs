@@ -14,7 +14,6 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 
 using RubberDucks.Utilities.Extensions;
-using Microsoft.Win32.SafeHandles;
 
 namespace RubberDucks.KenneyJam.Level
 {
@@ -40,9 +39,9 @@ namespace RubberDucks.KenneyJam.Level
 		[SerializeField] private Vector2 m_TreeRotYRange = new Vector2(0.0f, 360.0f);
 
 		[Header("Tree Spawning")]
-		[Range(0, 1000)][SerializeField] private int m_NumTreesToSpawn = 500;
-		[SerializeField] private Transform m_TopLeftBoxCorner = default;
-		[SerializeField] private Transform m_BottomRightBoxCorner = default;
+		[Range(0, 10000)][SerializeField] private int m_NumTreesToSpawn = 500;
+		[SerializeField] private Transform m_BottomLeftBoxCorner = default;
+		[SerializeField] private Transform m_TopRightBoxCorner = default;
 		[SerializeField] private Transform m_SpawnedTreeParent = default;
 		[SerializeField] private List<GameObject> m_TreePrefabs = default;
 
@@ -74,8 +73,8 @@ namespace RubberDucks.KenneyJam.Level
 			GameObject treePrefabToSpawn = m_TreePrefabs.GetRandomElement();
 
 			Vector3 spawnPosition = new Vector3();
-			spawnPosition.x = Random.Range(m_TopLeftBoxCorner.position.x, m_BottomRightBoxCorner.position.x);
-			spawnPosition.z = Random.Range(m_TopLeftBoxCorner.position.z, m_BottomRightBoxCorner.position.z);
+			spawnPosition.x = Random.Range(m_BottomLeftBoxCorner.position.x, m_TopRightBoxCorner.position.x);
+			spawnPosition.z = Random.Range(m_BottomLeftBoxCorner.position.z, m_TopRightBoxCorner.position.z);
 
 			float spawnRotationY = m_TreeRotYRange.RandValBetweenXAndY();
 			Quaternion spawnRotation = Quaternion.Euler(0.0f, spawnRotationY, 0.0f);
