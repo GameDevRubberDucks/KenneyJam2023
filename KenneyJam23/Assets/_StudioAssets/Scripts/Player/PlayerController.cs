@@ -8,12 +8,11 @@
  * - Kody Wood
 */
 
-
-using System;
-
+using DG.Tweening;
+using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
-using UnityEngine.Events;
-using static UnityEngine.Rendering.DebugUI;
+using RubberDucks.KenneyJam.Interactions;
 
 namespace RubberDucks.KenneyJam.Player
 {
@@ -45,7 +44,11 @@ namespace RubberDucks.KenneyJam.Player
         [SerializeField] private float m_Acceleration = 300.0f;
         private Vector3 m_LastLookDir = Vector3.forward;
 
+        private GameObject teasure;
+
         //--- Unity Methods ---//
+
+
         private void Update()
         {
             //Vector3 m_velDir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
@@ -75,6 +78,12 @@ namespace RubberDucks.KenneyJam.Player
         void UpdateRotation(Vector3 lookAt)
         {
             this.transform.LookAt(this.transform.position + lookAt);
+        }
+
+        void WayFinder()
+        {
+
+            teasure = GameObject.FindGameObjectWithTag("Pickup");
         }
     }
 }
