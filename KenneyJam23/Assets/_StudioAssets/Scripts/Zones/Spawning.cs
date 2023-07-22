@@ -13,7 +13,7 @@ using UnityEngine.Events;
 
 using System.Collections.Generic;
 
-namespace RubberDucks.ProjectName.Module
+namespace RubberDucks.KenneyJam.Zones
 {
     public class Spawning : MonoBehaviour
     {

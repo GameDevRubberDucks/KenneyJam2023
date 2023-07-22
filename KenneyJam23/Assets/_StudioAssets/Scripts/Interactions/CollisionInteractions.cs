@@ -8,31 +8,26 @@
  * - 
 */
 
+using RubberDucks.KenneyJam.Zones;
+
 using UnityEngine;
 using UnityEngine.Events;
 
-using System.Collections;
+using System.Collections.Generic;
 
 namespace RubberDucks.KenneyJam.Interactions
 {
     public class CollisionInteractions : MonoBehaviour
     {
-        //--- Events ---//
-        [System.Serializable]
-        public class EventList
-        {
-        }
-        [Header("Events")]
-        public EventList Events = default;
-
         //--- Properties ---//
 
         //--- Public Variables ---//
+        public bool m_IsCarrying = false;
 
         //--- Protected Variables ---//
 
         //--- Private Variables ---//
-        [SerializeField] private GameObject m_CurrentPickup;
+        [SerializeField] private List<Pickup> m_CurrentPickup;
 
         //--- Unity Methods ---//
 
@@ -43,14 +38,14 @@ namespace RubberDucks.KenneyJam.Interactions
         //--- Private Methods ---//
         private void OnTriggerEnter(Collider other)
         {
-            //Collision checks for entering drop and collect zones
+            other.GetComponent<Zone>().CollideWithZone();
+
             if (other.gameObject.CompareTag("Drop"))
             {
-                DropItem(true, other.gameObject);
-            }
-            else if (other.gameObject.CompareTag("Collect"))
-            {
-                CollectItem(true, other.gameObject);
+                Destroy(m_CurrentPickup[0]);
+                m_CurrentPickup.Clear();
+
+                m_IsCarrying = false;
             }
         }
 
@@ -58,55 +53,24 @@ namespace RubberDucks.KenneyJam.Interactions
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                DropItem(false, collision.gameObject);
+                //DropItem(false, collision.gameObject);
+                if (m_CurrentPickup.Count > 0)
+                {
+                    m_CurrentPickup[0].GetComponent<Pickup>().UpdatePickupStatus();
+                    m_CurrentPickup.Clear();
+
+                    m_IsCarrying = false;
+                }          
             }
             else if (collision.gameObject.CompareTag("Pickup"))
             {
-                CollectItem(false, collision.gameObject);
+                //CollectItem(false, collision.gameObject);
+                collision.gameObject.GetComponent<Pickup>().UpdatePickupStatus();
+                collision.gameObject.transform.SetParent(transform);
+
+                m_CurrentPickup.Add(collision.gameObject.GetComponent<Pickup>());
+                m_IsCarrying = true;
             }
-        }
-
-        private void DropItem(bool isZone, GameObject zone)
-        {
-            //Dropping into a drop off zone
-            if (isZone)
-            {
-                if (transform.childCount > 0)
-                {
-                    Destroy(m_CurrentPickup.gameObject);
-                    m_CurrentPickup = null;
-                }
-            }
-            //Dropping from player interaction
-            else
-            {
-                m_CurrentPickup.GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Impulse);
-                m_CurrentPickup.SetActive(true);
-                m_CurrentPickup.transform.parent = null;
-
-                m_CurrentPickup = null;
-            }
-        }
-
-        private void CollectItem(bool isZone, GameObject zone)
-        {
-            if (isZone)
-            {
-                if (zone.transform.childCount > 0)
-                {
-                    m_CurrentPickup = zone.transform.GetChild(0).gameObject;
-
-                    m_CurrentPickup.transform.SetParent(this.transform);
-                }
-            }
-            else
-            {
-                zone.transform.SetParent(this.transform);
-
-                m_CurrentPickup = zone;
-                m_CurrentPickup.SetActive(false);
-            }
-
         }
     }
 }
