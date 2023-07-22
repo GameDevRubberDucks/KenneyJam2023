@@ -72,7 +72,7 @@ namespace RubberDucks.KenneyJam.Player
         private void Update()
         {
             float speedMultiplier = (IsCuttingTrees) ? m_CuttingTreesSpeedMultiplier : 1.0f;
-            Vector3 m_velDir = new Vector3(Input.GetAxis(m_InputAxisX), 0.0f, -Input.GetAxis(m_InputAxisZ));
+            Vector3 m_velDir = Vector3.Normalize(new Vector3(Input.GetAxis(m_InputAxisX), 0.0f, -Input.GetAxis(m_InputAxisZ)));
             if (Input.GetAxisRaw(m_InputAxisX) != 0 || Input.GetAxisRaw(m_InputAxisZ) != 0)
             {
                 m_LastLookDir = m_velDir;
