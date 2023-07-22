@@ -13,7 +13,7 @@ using UnityEngine.Events;
 
 using System.Collections.Generic;
 
-namespace RubberDucks.ProjectName.Module
+namespace RubberDucks.KenneyJam.Zones
 {
     public class Spawning : MonoBehaviour
     {
@@ -38,21 +38,26 @@ namespace RubberDucks.ProjectName.Module
         //--- Unity Methods ---//
         private void Start()
         {
-
+            DetermineSpawnCollect();
+            DetermineSpawnDrop();
+            SpawnCollectZone();
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SpawnZones();
-            }
+            
         }
 
         //--- Public Methods ---//
-        public void SpawnZones()
+
+        public void SpawnDropZone()
         {
-            GenerateSpawnZones();
+            SpawnZones(true);
+        }
+
+        public void SpawnCollectZone()
+        {
+            SpawnZones(false);
         }
 
         //--- Protected Methods ---//
@@ -74,20 +79,20 @@ namespace RubberDucks.ProjectName.Module
             m_ZoneSpawnPosDrop = new Vector3(xCoord, 0.0f, zCoord);
         }
 
-        private void GenerateSpawnZones()
+        private void SpawnZones(bool isDrop)
         {
-            DetermineSpawnCollect();
-            DetermineSpawnDrop();
+            if (isDrop)
+            {
+                DetermineSpawnDrop();
+                m_ActiveZones.Add(Instantiate(m_ZoneDrop, m_ZoneSpawnPosDrop, Quaternion.identity));
+            }
+            else
+            {
+                DestroyOldZones();
 
-            //float dist = Vector3.Distance(m_ZoneSpawnPosCollect, m_ZoneSpawnPosCollect);
-
-
-            DestroyOldZones();
-
-            m_ActiveZones.Add(Instantiate(m_ZoneDrop, m_ZoneSpawnPosDrop, Quaternion.identity));
-            m_ActiveZones.Add(Instantiate(m_ZoneCollect, m_ZoneSpawnPosCollect, Quaternion.identity));
-
-
+                DetermineSpawnCollect();
+                m_ActiveZones.Add(Instantiate(m_ZoneCollect, m_ZoneSpawnPosCollect, Quaternion.identity));
+            }       
         }
 
         private void DestroyOldZones()
