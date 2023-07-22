@@ -46,7 +46,8 @@ namespace RubberDucks.KenneyJam.Level
         [Range(0, 10000)][SerializeField] private int m_NumTreesToSpawn = 5000;
         [SerializeField] private LevelTreePathCuller m_TreeCuller = default;
 
-        [Header("Rock Data")]
+		[Header("Rock Data")]
+		[SerializeField] private bool m_GenerateRocks = false;
         [SerializeField] private LevelTreePlacer m_RockPlacer = default;
         [Range(0, 10000)][SerializeField] private int m_NumRocksToSpawn = 5000;
 		[SerializeField] private LevelTreePathCuller m_RockCuller = default;
@@ -100,10 +101,13 @@ namespace RubberDucks.KenneyJam.Level
 			m_CapsulePlacer.RegisterTreesToCapsules();
 			m_CapsulePlacer.CullCapsules();
 
-			m_RockPlacer.SpawnTrees();
-			m_RockCuller.CullTrees();
+			if (m_GenerateRocks)
+			{
+				m_RockPlacer.SpawnTrees();
+				m_RockCuller.CullTrees();
+			}
 
-			this.transform.localScale = Vector3.one * m_LevelScale;
+            this.transform.localScale = Vector3.one * m_LevelScale;
 
             DateTime endTime = DateTime.Now;
 

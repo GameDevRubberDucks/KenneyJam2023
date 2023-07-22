@@ -176,7 +176,8 @@ namespace RubberDucks.KenneyJam.Level
                     Destroy(forestCollider); // Deleting this component will prevent the obstacle from being pruned by the bulldoze system
                 }
 
-                return false;
+                //return false;
+                return true;
             }
             else if (texGreenChannel > m_PathColourCutoff)
             {
