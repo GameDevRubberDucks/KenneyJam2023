@@ -55,23 +55,23 @@ namespace RubberDucks.KenneyJam.Level
                 {
                     forestCollider.ClearForest();
 
-                    if (m_PlayerController != null)
-                    {
-                        m_PlayerController.IsCuttingTrees = true;
-                    }
+                    //if (m_PlayerController != null)
+                    //{
+                    //    m_PlayerController.IsCuttingTrees = true;
+                    //}
                 }
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (m_PlayerController != null)
-            {
-                if (other.TryGetComponent<LevelForestCollider>(out LevelForestCollider forestCollider))
-                {
-                    m_PlayerController.IsCuttingTrees = false;
-                }
-            }
+            //if (m_PlayerController != null)
+            //{
+            //    if (other.TryGetComponent<LevelForestCollider>(out LevelForestCollider forestCollider))
+            //    {
+            //        m_PlayerController.IsCuttingTrees = false;
+            //    }
+            //}
         }
 
         //--- Public Methods ---//
