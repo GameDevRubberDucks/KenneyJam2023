@@ -8,6 +8,8 @@
  * - Dan
 */
 
+using RubberDucks.KenneyJam.Interactions;
+using RubberDucks.KenneyJam.Player;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -30,13 +32,39 @@ namespace RubberDucks.KenneyJam.Level
         //--- Protected Variables ---//
 
         //--- Private Variables ---//
+        [SerializeField] private PlayerController m_PlayerController = default;
+        [SerializeField] private CollisionInteractions m_CollisionInteractions = default;
+
+        private bool m_CanCutTrees = true;
 
         //--- Unity Methods ---//
+        private void Update()
+        {
+            // TODO: Add an event for picking up so we don't need to poll constantly
+            m_CanCutTrees = !m_CollisionInteractions.m_IsCarrying;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<LevelForestCollider>(out LevelForestCollider forestCollider))
+            if (m_CanCutTrees)
             {
-                forestCollider.ClearForest();
+                if (other.TryGetComponent<LevelForestCollider>(out LevelForestCollider forestCollider))
+                {
+                    forestCollider.ClearForest();
+                }
+
+                if (m_PlayerController != null)
+                {
+                    m_PlayerController.IsCuttingTrees = true;
+                }
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (m_PlayerController != null)
+            {
+                m_PlayerController.IsCuttingTrees = false;
             }
         }
 

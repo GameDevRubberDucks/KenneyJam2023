@@ -38,7 +38,10 @@ namespace RubberDucks.KenneyJam.Interactions
         //--- Private Methods ---//
         private void OnTriggerEnter(Collider other)
         {
-            other.GetComponent<Zone>().CollideWithZone();
+            if (other.TryGetComponent<Zone>(out Zone zone))
+            {
+                zone.CollideWithZone();
+            }
 
             if (other.gameObject.CompareTag("Drop"))
             {

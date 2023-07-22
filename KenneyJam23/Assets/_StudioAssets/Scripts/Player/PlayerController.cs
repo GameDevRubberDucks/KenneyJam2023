@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using RubberDucks.KenneyJam.Interactions;
-using DG.Tweening;
+using System;
 
 namespace RubberDucks.KenneyJam.Player
 {
@@ -34,6 +34,13 @@ namespace RubberDucks.KenneyJam.Player
         //    get => m_PlayerIndex; 
         //    set => m_PlayerIndex = value;
         //}
+
+        public bool IsCuttingTrees
+        {
+            get => m_IsCuttingTrees;
+            set => m_IsCuttingTrees = value;
+        }
+
         //--- Public Variables ---//
 
         //--- Protected Variables ---//
@@ -42,9 +49,13 @@ namespace RubberDucks.KenneyJam.Player
         [SerializeField] private Int32 m_PlayerIndex = -1;
         [SerializeField] private string m_InputAxisX = string.Empty;
         [SerializeField] private string m_InputAxisZ = string.Empty;
+
         [Header("Movement Variables")]
         [SerializeField] private float m_Acceleration = 300.0f;
+        [SerializeField] private float m_CuttingTreesSpeedMultiplier = 0.5f;
+
         private Vector3 m_LastLookDir = Vector3.forward;
+        private bool m_IsCuttingTrees = false;
 
         [SerializeField] private GameObject arrow;
         private GameObject[] playerList;
@@ -60,12 +71,13 @@ namespace RubberDucks.KenneyJam.Player
 
         private void Update()
         {
+            float speedMultiplier = (IsCuttingTrees) ? m_CuttingTreesSpeedMultiplier : 1.0f;
             Vector3 m_velDir = new Vector3(Input.GetAxis(m_InputAxisX), 0.0f, Input.GetAxis(m_InputAxisZ));
             if (Input.GetAxisRaw(m_InputAxisX) != 0 || Input.GetAxisRaw(m_InputAxisZ) != 0)
             {
                 m_LastLookDir = m_velDir;
             }
-            this.GetComponent<Rigidbody>().velocity += m_Acceleration * m_velDir * Time.deltaTime;
+            this.GetComponent<Rigidbody>().velocity += m_Acceleration * m_velDir * Time.deltaTime * speedMultiplier;
             UpdateRotation(m_LastLookDir);
 
             //WayFinder();

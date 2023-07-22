@@ -212,6 +212,7 @@ Transform:
   - {fileID: 5609008233371542214}
   - {fileID: 3244630543030364152}
   - {fileID: 4771987274107668356}
+  - {fileID: 1152532644}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -246,7 +247,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!135 &2410998985746952556
 SphereCollider:
