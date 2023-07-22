@@ -511,6 +511,10 @@ PrefabInstance:
       propertyPath: m_BoundsMin
       value: 
       objectReference: {fileID: 478651840}
+    - target: {fileID: 9112620541734324724, guid: f4665521ac61041f7b3d64f2c73021ab, type: 3}
+      propertyPath: m_LevelGenerator
+      value: 
+      objectReference: {fileID: 1325611372}
     - target: {fileID: 9112620541734324725, guid: f4665521ac61041f7b3d64f2c73021ab, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -809,6 +813,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 417184345288235575, guid: 187fe7c120a8b4f509c2ae1521135f43, type: 3}
   m_PrefabInstance: {fileID: 417184344930481127}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1325611372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1403468697341247048, guid: 07db20ff616591c46a6470ed2249bcd6, type: 3}
+  m_PrefabInstance: {fileID: 727393948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f2dc7b748d3c648a5dd3c82ba1a3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2021387262
 GameObject:
   m_ObjectHideFlags: 0

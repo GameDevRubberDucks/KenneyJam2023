@@ -27,6 +27,8 @@ namespace RubberDucks.KenneyJam.Level
 		public EventList Events = default;
 
 		//--- Properties ---//
+		public Texture2D PathTexture => m_ActivePathTexture;
+		public float PathColourCutoff => m_PathColourCutoff;
 
 		//--- Public Variables ---//
 
