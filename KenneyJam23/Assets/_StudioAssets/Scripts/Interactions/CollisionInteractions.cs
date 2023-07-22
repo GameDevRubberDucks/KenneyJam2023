@@ -52,6 +52,7 @@ namespace RubberDucks.KenneyJam.Interactions
                 }
 
                 m_IsCarrying = false;
+                m_PlayerController.TryTransform(false);
             }
             else if (other.gameObject.CompareTag("Collect"))
             {
@@ -73,6 +74,8 @@ namespace RubberDucks.KenneyJam.Interactions
                     m_CurrentPickup.Clear();
 
                     m_IsCarrying = false;
+
+                    m_PlayerController.TryTransform(false);
                 }
             }
             else if (collision.gameObject.CompareTag("Pickup"))
