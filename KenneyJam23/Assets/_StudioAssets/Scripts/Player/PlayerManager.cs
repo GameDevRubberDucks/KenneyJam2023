@@ -51,8 +51,8 @@ namespace RubberDucks.KenneyJam.Jam
             if (Input.GetKeyDown(KeyCode.P) && m_CurrentPlayers + 1 <= m_MaxPlayers)
             {
                 GameObject newPlayer = Instantiate(m_PlayerPrefab, m_SpawnLocations[m_CurrentPlayers].position, Quaternion.identity);
-                newPlayer.GetComponent<PlayerController>().InitializePlayer(m_CurrentPlayers, ref m_PlayerList);
                 m_PlayerList[m_CurrentPlayers] = newPlayer;
+                newPlayer.GetComponent<PlayerController>().InitializePlayer(m_CurrentPlayers, m_PlayerList);
                 ++m_CurrentPlayers;
             }
             if (Input.GetKeyDown(KeyCode.O) && m_CurrentPlayers - 1 != 0)

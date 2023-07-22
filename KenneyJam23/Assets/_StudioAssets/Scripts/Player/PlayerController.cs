@@ -49,6 +49,7 @@ namespace RubberDucks.KenneyJam.Player
         [SerializeField] private Int32 m_PlayerIndex = -1;
         [SerializeField] private string m_InputAxisX = string.Empty;
         [SerializeField] private string m_InputAxisZ = string.Empty;
+        [SerializeField] private string m_TransformInput = string.Empty;
 
         [Header("Movement Variables")]
         [SerializeField] private float m_Acceleration = 300.0f;
@@ -58,16 +59,15 @@ namespace RubberDucks.KenneyJam.Player
         private bool m_IsCuttingTrees = false;
 
         [SerializeField] private GameObject arrow;
-        private GameObject[] playerList;
         private Dictionary<Int32, GameObject> m_PlayerList = new Dictionary<int, GameObject>();
 
         //--- Unity Methods ---//
 
-        private void Start()
-        {
-            playerList = new GameObject[GameObject.FindGameObjectsWithTag("Player").Length];
-            playerList = GameObject.FindGameObjectsWithTag("Player");
-        }
+        //private void Start()
+        //{
+        //    playerList = new GameObject[GameObject.FindGameObjectsWithTag("Player").Length];
+        //    playerList = GameObject.FindGameObjectsWithTag("Player");
+        //}
 
         private void Update()
         {
@@ -80,16 +80,23 @@ namespace RubberDucks.KenneyJam.Player
             this.GetComponent<Rigidbody>().velocity += m_Acceleration * m_velDir * Time.deltaTime * speedMultiplier;
             UpdateRotation(m_LastLookDir);
 
-            //WayFinder();
+            WayFinder();
 
+            if (Input.GetButtonDown(m_TransformInput))
+            {
+                TryTransform();
+            }
         }
 
         //--- Public Methods ---//
-        public void InitializePlayer(Int32 playerInd, ref Dictionary<Int32, GameObject> playerList)
+        public void InitializePlayer(Int32 playerInd, Dictionary<Int32, GameObject> playerList)
         {
+            Debug.Log("InitializePlayers(). Num players = " + playerList.Count);
+
             m_PlayerIndex = playerInd;
             m_InputAxisX = "Horizontal" + playerInd.ToString();
             m_InputAxisZ = "Vertical" + playerInd.ToString();
+            m_TransformInput = "Transform" + playerInd.ToString();
             m_PlayerList = playerList;
         }
         //--- Protected Methods ---//
@@ -100,11 +107,11 @@ namespace RubberDucks.KenneyJam.Player
             this.transform.LookAt(this.transform.position + lookAt);
         }
 
-        /*
+
         void WayFinder()
         {
-            Debug.Log(playerList.Length);
-            foreach (var player in playerList)
+            Debug.Log("WayFinder() player count = " + m_PlayerList.Count);
+            foreach (var player in m_PlayerList.Values)
             {
                 if (gameObject.GetComponent<CollisionInteractions>().m_IsCarrying)
                 {
@@ -126,6 +133,10 @@ namespace RubberDucks.KenneyJam.Player
 
             }
         }
-        */
+
+        private void TryTransform()
+        {
+            Debug.Log("Trying transform for player with index " + m_PlayerIndex);
+        }
     }
 }
