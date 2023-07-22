@@ -5,7 +5,8 @@
  * - 
  * 
  * Author(s): 
- * - 
+ * - Alain
+ * - Kody Wood
 */
 
 using RubberDucks.KenneyJam.Zones;
@@ -30,6 +31,7 @@ namespace RubberDucks.KenneyJam.Interactions
         //--- Private Variables ---//
         [SerializeField] private List<Pickup> m_CurrentPickup;
         [SerializeField] private PlayerController m_PlayerController = default;
+        
 
         //--- Unity Methods ---//
 
@@ -44,6 +46,7 @@ namespace RubberDucks.KenneyJam.Interactions
             {
                 if (m_CurrentPickup.Count > 0)
                 {
+                    IncrementScore(m_CurrentPickup[0].DropOffPoints + m_CurrentPickup[0].CarryPointsRemaining);
                     Destroy(m_CurrentPickup[0]);
 
                     m_CurrentPickup.Clear();
@@ -70,9 +73,11 @@ namespace RubberDucks.KenneyJam.Interactions
                 if (m_CurrentPickup.Count > 0)
                 {
                     m_CurrentPickup[0].GetComponent<Pickup>().UpdatePickupStatus();
+                    m_CurrentPickup[0].m_Events.CarryPointScored.RemoveListener(IncrementScore);
                     m_CurrentPickup.Clear();
 
                     m_IsCarrying = false;
+                    collision.gameObject.GetComponent<PlayerController>().TryTransform(false);
                 }
             }
             else if (collision.gameObject.CompareTag("Pickup"))
@@ -82,10 +87,17 @@ namespace RubberDucks.KenneyJam.Interactions
                 collision.gameObject.transform.SetParent(transform);
 
                 m_CurrentPickup.Add(collision.gameObject.GetComponent<Pickup>());
+                m_CurrentPickup[0].m_Events.CarryPointScored.AddListener(IncrementScore);
                 m_IsCarrying = true;
 
                 m_PlayerController.TryTransform(true);
             }
+        }
+
+        private void IncrementScore(int value)
+        {
+            m_PlayerController.Score += value;
+            m_PlayerController.Events.OnPlayerScoreChange.Invoke();
         }
     }
 }
