@@ -45,18 +45,20 @@ namespace RubberDucks.KenneyJam.Zones
 
         private void Update()
         {
-            
+
         }
 
         //--- Public Methods ---//
 
         public void SpawnDropZone()
         {
+            Debug.Log("Spawning Drop Zone");
             SpawnZones(true);
         }
 
         public void SpawnCollectZone()
         {
+            Debug.Log("Spawning Collect Zone");
             SpawnZones(false);
         }
 
@@ -83,6 +85,8 @@ namespace RubberDucks.KenneyJam.Zones
         {
             if (isDrop)
             {
+                DestroyOldZones();
+
                 DetermineSpawnDrop();
                 m_ActiveZones.Add(Instantiate(m_ZoneDrop, m_ZoneSpawnPosDrop, Quaternion.identity));
             }
@@ -92,7 +96,7 @@ namespace RubberDucks.KenneyJam.Zones
 
                 DetermineSpawnCollect();
                 m_ActiveZones.Add(Instantiate(m_ZoneCollect, m_ZoneSpawnPosCollect, Quaternion.identity));
-            }       
+            }
         }
 
         private void DestroyOldZones()

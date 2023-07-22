@@ -38,28 +38,34 @@ namespace RubberDucks.KenneyJam.Interactions
         //--- Private Methods ---//
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<Zone>(out Zone zone))
-            {
-                zone.CollideWithZone();
-            }
+            
 
             if (other.gameObject.CompareTag("Drop"))
             {
                 if (m_CurrentPickup.Count > 0)
                 {
                     Destroy(m_CurrentPickup[0]);
+
                     m_CurrentPickup.Clear();
 
+                    other.gameObject.GetComponent<Zone>().CollideWithZone(m_IsCarrying);
                 }
 
                 m_IsCarrying = false;
             }
+            else if (other.gameObject.CompareTag("Collect"))
+            {
+                other.gameObject.GetComponent<Zone>().CollideWithZone(m_IsCarrying);
+            }
+
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
+
+                Debug.Log("Player Collision");
                 //DropItem(false, collision.gameObject);
                 if (m_CurrentPickup.Count > 0)
                 {

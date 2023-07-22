@@ -9,6 +9,7 @@
 */
 
 using RubberDucks.KenneyJam.Zones;
+using RubberDucks.KenneyJam.Interactions;
 
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,20 +25,21 @@ namespace RubberDucks.KenneyJam.Zones
 		//--- Protected Variables ---//
 
 		//--- Private Variables ---//
+		[SerializeField] private Pickup m_Pickup;
 		[SerializeField] private bool m_IsDrop = true;
 
 		[SerializeField] private Spawning m_ZoneSpawner;
 
-        //--- Unity Methods ---//
-        public void Start()
-        {
-			m_ZoneSpawner = GameObject.FindObjectOfType<Spawning>();
-        }
-
-        //--- Public Methods ---//
-        public void CollideWithZone()
+		//--- Unity Methods ---//
+		public void Start()
 		{
-			if (m_IsDrop)
+			m_ZoneSpawner = GameObject.FindObjectOfType<Spawning>();
+		}
+
+		//--- Public Methods ---//
+		public void CollideWithZone(bool isCarrying)
+		{
+			if (m_IsDrop && isCarrying)
 			{
 				//Add function to increase score here
 
@@ -46,6 +48,9 @@ namespace RubberDucks.KenneyJam.Zones
 			else
 			{
 				m_ZoneSpawner.SpawnDropZone();
+
+				Vector3 spawnPos = transform.position + (5.0f * Vector3.up);
+				Instantiate(m_Pickup, spawnPos, Quaternion.identity);
 			}
 		}
 
