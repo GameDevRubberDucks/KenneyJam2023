@@ -26,6 +26,11 @@ namespace RubberDucks.KenneyJam.Level
 		public EventList Events = default;
 
         //--- Properties ---//
+        public bool CanCutTrees
+        {
+            get => m_CanCutTrees;
+            set => m_CanCutTrees = value;
+        }
 
         //--- Public Variables ---//
 
@@ -35,18 +40,9 @@ namespace RubberDucks.KenneyJam.Level
         [SerializeField] private PlayerController m_PlayerController = default;
         [SerializeField] private CollisionInteractions m_CollisionInteractions = default;
 
-        private bool m_CanCutTrees = true;
+        private bool m_CanCutTrees = false;
 
         //--- Unity Methods ---//
-        private void Update()
-        {
-            // TODO: Add an event for picking up so we don't need to poll constantly
-            if (m_CollisionInteractions != null)
-            {
-                m_CanCutTrees = !m_CollisionInteractions.m_IsCarrying;
-            }
-        }
-
         private void OnTriggerEnter(Collider other)
         {
             if (m_CanCutTrees)
@@ -54,24 +50,19 @@ namespace RubberDucks.KenneyJam.Level
                 if (other.TryGetComponent<LevelForestCollider>(out LevelForestCollider forestCollider))
                 {
                     forestCollider.ClearForest();
-
-                    //if (m_PlayerController != null)
-                    //{
-                    //    m_PlayerController.IsCuttingTrees = true;
-                    //}
                 }
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        private void OnTriggerStay(Collider other)
         {
-            //if (m_PlayerController != null)
-            //{
-            //    if (other.TryGetComponent<LevelForestCollider>(out LevelForestCollider forestCollider))
-            //    {
-            //        m_PlayerController.IsCuttingTrees = false;
-            //    }
-            //}
+            if (m_CanCutTrees)
+            {
+                if (other.TryGetComponent<LevelForestCollider>(out LevelForestCollider forestCollider))
+                {
+                    forestCollider.ClearForest();
+                }
+            }
         }
 
         //--- Public Methods ---//
