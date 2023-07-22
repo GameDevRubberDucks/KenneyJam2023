@@ -62,6 +62,9 @@ namespace RubberDucks.KenneyJam.Player
         [SerializeField] private LevelPathCutter m_ForestCutterComp = default;
         [SerializeField] private CollisionInteractions m_InteractionsComp = default;
 
+        [Header("Colours")]
+        [SerializeField] private Color[] m_PlayerColours = default;
+
         private Vector3 m_LastLookDir = Vector3.forward;
         private bool m_IsTruckForm = true;
 
@@ -96,6 +99,8 @@ namespace RubberDucks.KenneyJam.Player
             m_InputAxisZ = "Vertical" + playerInd.ToString();
             m_TransformInput = "Transform" + playerInd.ToString();
             m_PlayerList = playerList;
+
+            ApplyPlayerColours();
         }
 
         public void TryTransform(bool toTruck)
@@ -113,6 +118,16 @@ namespace RubberDucks.KenneyJam.Player
             m_ForestCutterComp.CanCutTrees = !toTruck;
 
             m_IsTruckForm = toTruck;
+        }
+
+        public void ApplyPlayerColours()
+        {
+            foreach(var arrowSprite in arrow.GetComponentsInChildren<SpriteRenderer>()) 
+            {
+                arrowSprite.color = m_PlayerColours[m_PlayerIndex];
+            }
+
+            // TODO: Change the player vehicle colours as well
         }
 
         //--- Protected Methods ---//
