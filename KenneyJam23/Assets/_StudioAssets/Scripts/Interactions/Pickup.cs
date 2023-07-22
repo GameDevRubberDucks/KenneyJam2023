@@ -17,15 +17,6 @@ namespace RubberDucks.KenneyJam.Interactions
 {
 	public class Pickup : MonoBehaviour
 	{
-        //--- Events ---//
-        [System.Serializable]
-        public class EventList
-        {
-			public UnityEvent<int> CarryPointScored;
-        }
-        [Header("Events")]
-        public EventList m_Events = default;
-
         //--- Properties ---//
 		public int DropOffPoints
 		{
@@ -52,19 +43,6 @@ namespace RubberDucks.KenneyJam.Interactions
         private float m_CarryScoreTimer = 3.0f;
 
         //--- Unity Methods ---//
-        private void Update()
-        {
-            if (m_IsCarried)
-            {
-				m_CarryScoreTimer += Time.deltaTime;
-                if (m_CarryScoreTimer >= m_SecondsToCarryScore)
-				{
-					UpdateCarryPoints(1);
-					m_Events.CarryPointScored.Invoke(1);
-					m_CarryScoreTimer = 0;
-				}
-            }
-        }
 
         //--- Public Methods ---//
         public void UpdatePickupStatus()

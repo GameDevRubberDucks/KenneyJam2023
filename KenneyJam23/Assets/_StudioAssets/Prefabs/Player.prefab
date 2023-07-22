@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 2410998985746952554}
   - component: {fileID: 2410998985746952556}
   - component: {fileID: 6146259549629782484}
+  - component: {fileID: -6037169466691265759}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -225,6 +226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0359e6729251ee84aa5036d108b3b89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Events:
+    OnPlayerScoreChange:
+      m_PersistentCalls:
+        m_Calls: []
   m_PlayerIndex: -1
   m_Score: 0
   m_InputAxisX: 
@@ -241,6 +246,7 @@ MonoBehaviour:
   - {r: 0, g: 0.6533134, b: 1, a: 1}
   - {r: 0.44419003, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.8657135, b: 0, a: 1}
+  m_PlayerScoreUI: {fileID: 0}
   arrow: {fileID: 5469343963091466140}
 --- !u!54 &2410998985746952554
 Rigidbody:
@@ -286,6 +292,32 @@ MonoBehaviour:
   m_IsCarrying: 0
   m_CurrentPickup: []
   m_PlayerController: {fileID: 2410998985746952555}
+  m_PickupHeldTimer: {fileID: -6037169466691265759}
+--- !u!114 &-6037169466691265759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2410998985746952553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b6fc6d073bfe649be61aadeeb23e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    OnFinished:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStoppedEarly:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTimeLeftUpdated:
+      m_PersistentCalls:
+        m_Calls: []
+  m_SetDurationFromOtherScript: 0
+  m_Duration: 1
+  m_ShouldLoop: 1
 --- !u!1 &2640811067613911220
 GameObject:
   m_ObjectHideFlags: 0
