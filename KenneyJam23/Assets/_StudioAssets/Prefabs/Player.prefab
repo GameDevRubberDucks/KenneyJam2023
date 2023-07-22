@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerIndex: -1
+  m_Score: 0
   m_InputAxisX: 
   m_InputAxisZ: 
   m_TransformInput: 
@@ -235,6 +236,11 @@ MonoBehaviour:
   m_BulldozerVisuals: {fileID: 3387125402204788345}
   m_ForestCutterComp: {fileID: 8578420915797595218}
   m_InteractionsComp: {fileID: 6146259549629782484}
+  m_PlayerColours:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.6533134, b: 1, a: 1}
+  - {r: 0.44419003, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.8657135, b: 0, a: 1}
   arrow: {fileID: 5469343963091466140}
 --- !u!54 &2410998985746952554
 Rigidbody:
