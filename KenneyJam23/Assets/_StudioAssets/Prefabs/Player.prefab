@@ -231,6 +231,7 @@ MonoBehaviour:
   m_PlayerIndex: -1
   m_InputAxisX: 
   m_InputAxisZ: 
+  m_TransformInput: 
   m_Acceleration: 300
   m_CuttingTreesSpeedMultiplier: 1
   arrow: {fileID: 5469343963091466140}
@@ -639,7 +640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5619034206226463117, guid: d145634845aa242c789ff0a7bf5d770d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5619034206226463117, guid: d145634845aa242c789ff0a7bf5d770d, type: 3}
       propertyPath: m_LocalPosition.z
