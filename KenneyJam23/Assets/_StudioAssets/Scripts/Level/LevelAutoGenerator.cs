@@ -53,6 +53,9 @@ namespace RubberDucks.KenneyJam.Level
 		[SerializeField] private LevelCapsuleColliderPlacer m_CapsulePlacer = default;
         [Range(0, 100)][SerializeField] private int m_NumCollidersPerAxis = 50;
 
+		[Header("Post-Process Data")]
+		[SerializeField] private float m_LevelScale = 1.0f;
+
         //--- Unity Methods ---//
         private void Awake()
         {
@@ -98,7 +101,9 @@ namespace RubberDucks.KenneyJam.Level
 			m_RockPlacer.SpawnTrees();
 			m_RockCuller.CullTrees();
 
-			DateTime endTime = DateTime.Now;
+			this.transform.localScale = Vector3.one * m_LevelScale;
+
+            DateTime endTime = DateTime.Now;
 
             Debug.Log($"Generated level in {endTime.Subtract(startTime).Milliseconds} milliseconds");
 		}

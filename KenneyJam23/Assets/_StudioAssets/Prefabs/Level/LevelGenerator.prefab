@@ -131,6 +131,7 @@ MonoBehaviour:
   m_RockCuller: {fileID: 1403468697341247050}
   m_CapsulePlacer: {fileID: 1403468697341247049}
   m_NumCollidersPerAxis: 50
+  m_LevelScale: 3
 --- !u!114 &1403468697341247054
 MonoBehaviour:
   m_ObjectHideFlags: 0
