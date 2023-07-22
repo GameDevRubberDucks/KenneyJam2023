@@ -14,6 +14,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 using System.Collections.Generic;
+using RubberDucks.KenneyJam.Player;
 
 namespace RubberDucks.KenneyJam.Interactions
 {
@@ -28,6 +29,7 @@ namespace RubberDucks.KenneyJam.Interactions
 
         //--- Private Variables ---//
         [SerializeField] private List<Pickup> m_CurrentPickup;
+        [SerializeField] private PlayerController m_PlayerController = default;
 
         //--- Unity Methods ---//
 
@@ -38,8 +40,6 @@ namespace RubberDucks.KenneyJam.Interactions
         //--- Private Methods ---//
         private void OnTriggerEnter(Collider other)
         {
-            
-
             if (other.gameObject.CompareTag("Drop"))
             {
                 if (m_CurrentPickup.Count > 0)
@@ -83,6 +83,8 @@ namespace RubberDucks.KenneyJam.Interactions
 
                 m_CurrentPickup.Add(collision.gameObject.GetComponent<Pickup>());
                 m_IsCarrying = true;
+
+                m_PlayerController.TryTransform(true);
             }
         }
     }

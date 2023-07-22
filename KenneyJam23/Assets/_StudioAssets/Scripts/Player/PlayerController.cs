@@ -15,6 +15,7 @@ using UnityEngine;
 
 using RubberDucks.KenneyJam.Interactions;
 using System;
+using RubberDucks.KenneyJam.Level;
 
 namespace RubberDucks.KenneyJam.Player
 {
@@ -35,12 +36,6 @@ namespace RubberDucks.KenneyJam.Player
         //    set => m_PlayerIndex = value;
         //}
 
-        public bool IsCuttingTrees
-        {
-            get => m_IsCuttingTrees;
-            set => m_IsCuttingTrees = value;
-        }
-
         //--- Public Variables ---//
 
         //--- Protected Variables ---//
@@ -53,25 +48,24 @@ namespace RubberDucks.KenneyJam.Player
 
         [Header("Movement Variables")]
         [SerializeField] private float m_Acceleration = 300.0f;
-        [SerializeField] private float m_CuttingTreesSpeedMultiplier = 0.5f;
+        [SerializeField] private float m_BulldozerSpeedMultiplier = 0.5f;
+
+        [Header("Vehicle Components")]
+        [SerializeField] private GameObject m_TruckVisuals = default;
+        [SerializeField] private GameObject m_BulldozerVisuals = default;
+        [SerializeField] private LevelPathCutter m_ForestCutterComp = default;
+        [SerializeField] private CollisionInteractions m_InteractionsComp = default;
 
         private Vector3 m_LastLookDir = Vector3.forward;
-        private bool m_IsCuttingTrees = false;
+        private bool m_IsTruckForm = true;
 
         [SerializeField] private GameObject arrow;
         private Dictionary<Int32, GameObject> m_PlayerList = new Dictionary<int, GameObject>();
 
         //--- Unity Methods ---//
-
-        //private void Start()
-        //{
-        //    playerList = new GameObject[GameObject.FindGameObjectsWithTag("Player").Length];
-        //    playerList = GameObject.FindGameObjectsWithTag("Player");
-        //}
-
         private void Update()
         {
-            float speedMultiplier = (IsCuttingTrees) ? m_CuttingTreesSpeedMultiplier : 1.0f;
+            float speedMultiplier = (m_IsTruckForm) ? 1.0f : m_BulldozerSpeedMultiplier;
             Vector3 m_velDir = Vector3.Normalize(new Vector3(Input.GetAxis(m_InputAxisX), 0.0f, Input.GetAxis(m_InputAxisZ)));
             if (Input.GetAxisRaw(m_InputAxisX) != 0 || Input.GetAxisRaw(m_InputAxisZ) != 0)
             {
@@ -84,21 +78,37 @@ namespace RubberDucks.KenneyJam.Player
 
             if (Input.GetButtonDown(m_TransformInput))
             {
-                TryTransform();
+                TryTransform(!m_IsTruckForm);
             }
         }
 
         //--- Public Methods ---//
         public void InitializePlayer(Int32 playerInd, Dictionary<Int32, GameObject> playerList)
         {
-            Debug.Log("InitializePlayers(). Num players = " + playerList.Count);
-
             m_PlayerIndex = playerInd;
             m_InputAxisX = "Horizontal" + playerInd.ToString();
             m_InputAxisZ = "Vertical" + playerInd.ToString();
             m_TransformInput = "Transform" + playerInd.ToString();
             m_PlayerList = playerList;
         }
+
+        public void TryTransform(bool toTruck)
+        {
+            Debug.Log("Trying transform for player with index " + m_PlayerIndex);
+
+            if (m_InteractionsComp.m_IsCarrying)
+            {
+                toTruck = true;
+            }
+
+            m_TruckVisuals.SetActive(toTruck);
+            m_BulldozerVisuals.SetActive(!toTruck);
+
+            m_ForestCutterComp.CanCutTrees = !toTruck;
+
+            m_IsTruckForm = toTruck;
+        }
+
         //--- Protected Methods ---//
 
         //--- Private Methods ---//
@@ -110,7 +120,6 @@ namespace RubberDucks.KenneyJam.Player
 
         void WayFinder()
         {
-            Debug.Log("WayFinder() player count = " + m_PlayerList.Count);
             foreach (var player in m_PlayerList.Values)
             {
                 if (gameObject.GetComponent<CollisionInteractions>().m_IsCarrying)
@@ -132,11 +141,6 @@ namespace RubberDucks.KenneyJam.Player
                 }
 
             }
-        }
-
-        private void TryTransform()
-        {
-            Debug.Log("Trying transform for player with index " + m_PlayerIndex);
         }
     }
 }
