@@ -105,7 +105,7 @@ namespace RubberDucks.KenneyJam.Level
             {
                 GameObject capsule = m_ColliderParent.GetChild(i).gameObject;
 
-                if (CheckShouldCullCapsule(capsule))
+                if (HandleCapsuleBasedOnLevelTexture(capsule))
                 {
                     capsulesToCull.Add(capsule);
                 }
@@ -154,22 +154,36 @@ namespace RubberDucks.KenneyJam.Level
         //--- Protected Methods ---//
 
         //--- Private Methods ---//
-        private bool CheckShouldCullCapsule(GameObject tree)
+        private bool HandleCapsuleBasedOnLevelTexture(GameObject capsule)
         {
             // Figure out the equivalent UV coordinates for the tree based on its relative position within the spawn box
             // These UV coords will be used to sample the path texture and determine if the tree should exist or not
-            float treeUCoord = Mathf.InverseLerp(m_BottomLeftBoxCorner.position.x, m_TopRightBoxCorner.position.x, tree.transform.position.x);
-            float treeVCoord = Mathf.InverseLerp(m_BottomLeftBoxCorner.position.z, m_TopRightBoxCorner.position.z, tree.transform.position.z);
+            float treeUCoord = Mathf.InverseLerp(m_BottomLeftBoxCorner.position.x, m_TopRightBoxCorner.position.x, capsule.transform.position.x);
+            float treeVCoord = Mathf.InverseLerp(m_BottomLeftBoxCorner.position.z, m_TopRightBoxCorner.position.z, capsule.transform.position.z);
 
             // Sample the texture at the matching coordinate 
             Color pathTexColour = m_ActivePathTexture.GetPixelBilinear(treeUCoord, treeVCoord);
 
-            // The colour is black and white so just use the red channel
-            // If the colour is below the threshold, it is considered black and is allowed to have a tree
-            // If the colour is above, it is considered white and is therefore a path, meaning the tree should be culled
-            float pathTexBrightness = pathTexColour.r;
+            // The red channel is if the collider is an obstacle, in which case it should not be able to be destroyed
+            // The green channel is if the collider is on a path, in which case it should be culled completely
+            float texRedChannel = pathTexColour.r;
+            float texGreenChannel = pathTexColour.g;
 
-            return pathTexBrightness > m_PathColourCutoff;
+            if (texRedChannel > m_PathColourCutoff)
+            {
+                if (capsule.TryGetComponent<LevelForestCollider>(out var forestCollider))
+                {
+                    Destroy(forestCollider); // Deleting this component will prevent the obstacle from being pruned by the bulldoze system
+                }
+
+                return false;
+            }
+            else if (texGreenChannel > m_PathColourCutoff)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -1,0 +1,394 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1403468696794012107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403468696794012106}
+  m_Layer: 0
+  m_Name: TopRightCorner
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403468696794012106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468696794012107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 0, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1403468697341247047}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1403468697205010384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403468697205010387}
+  m_Layer: 0
+  m_Name: ColliderParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403468697205010387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697205010384}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1403468697341247047}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1403468697341247045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403468697341247047}
+  - component: {fileID: 1403468697341247048}
+  - component: {fileID: 1403468697341247054}
+  - component: {fileID: 1403468697341247044}
+  - component: {fileID: 1403468697341247051}
+  - component: {fileID: 1403468697341247055}
+  - component: {fileID: 1403468697341247049}
+  - component: {fileID: 1403468697341247052}
+  - component: {fileID: 1403468697341247053}
+  - component: {fileID: 1403468697341247050}
+  m_Layer: 0
+  m_Name: LevelGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403468697341247047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697341247045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1403468697803508287}
+  - {fileID: 1403468696794012106}
+  - {fileID: 1403468697205010387}
+  - {fileID: 1403468698527175949}
+  - {fileID: 1403468698367041688}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1403468697341247048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697341247045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f2dc7b748d3c648a5dd3c82ba1a3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BottomLeftBoxCorner: {fileID: 1403468697803508287}
+  m_TopRightBoxCorner: {fileID: 1403468696794012106}
+  m_ActivePathTexture: {fileID: 2800000, guid: a2bc5f4320b66aa4884edeafb5a47065, type: 3}
+  m_PathColourCutoff: 0.2
+  m_TreePlacer: {fileID: 1403468697341247044}
+  m_NumTreesToSpawn: 5000
+  m_TreeCuller: {fileID: 1403468697341247051}
+  m_RockPlacer: {fileID: 1403468697341247053}
+  m_NumRocksToSpawn: 5000
+  m_RockCuller: {fileID: 1403468697341247050}
+  m_CapsulePlacer: {fileID: 1403468697341247049}
+  m_NumCollidersPerAxis: 50
+--- !u!114 &1403468697341247054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697341247045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2b24950caf0234ca3d76c21a1c6747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Comment: Tree placer and culler
+--- !u!114 &1403468697341247044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697341247045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e5ea30c234b6a488f6e53d8c28b8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TreeScaleRange: {x: 0.8, y: 1.2}
+  m_TreeRotYRange: {x: 0, y: 360}
+  m_NumTreesToSpawn: 5000
+  m_BottomLeftBoxCorner: {fileID: 1403468697803508287}
+  m_TopRightBoxCorner: {fileID: 1403468696794012106}
+  m_SpawnedTreeParent: {fileID: 1403468698527175949}
+  m_TreePrefabs:
+  - {fileID: 200536564472455193, guid: 2e25e70441eea8e4c82a72bd8571c365, type: 3}
+  - {fileID: 8795637097833052695, guid: 694274226ad48e3428fe0a36001b03a9, type: 3}
+  - {fileID: 1528698097846987588, guid: 5c1f290af98453c44b2a4e52ad169e67, type: 3}
+  - {fileID: 6348657127589560023, guid: 1a9624daf822e3648a9c4c4588871996, type: 3}
+  - {fileID: 2494170880941296343, guid: 252a9dd47b2574e4da7229fc2892ba70, type: 3}
+--- !u!114 &1403468697341247051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697341247045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b611de96ad92cf24ab039c8a668aa2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BottomLeftBoxCorner: {fileID: 1403468697803508287}
+  m_TopRightBoxCorner: {fileID: 1403468696794012106}
+  m_SpawnedTreeParent: {fileID: 1403468698527175949}
+  m_KeepOnBlack: 1
+  m_KeepOnRed: 0
+  m_KeepOnGreen: 0
+  m_KeepOnBlue: 0
+  m_ActivePathTexture: {fileID: 2800000, guid: 9efda914056ec2840bb0e1fcb9a16502, type: 3}
+  m_PathColourCutoff: 0.2
+--- !u!114 &1403468697341247055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697341247045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2b24950caf0234ca3d76c21a1c6747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Comment: Capsule placer and culler
+--- !u!114 &1403468697341247049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697341247045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c96e343c335274e92be46c65a54d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BottomLeftBoxCorner: {fileID: 1403468697803508287}
+  m_TopRightBoxCorner: {fileID: 1403468696794012106}
+  m_NumSamplesPerAxis: 50
+  m_ColliderParent: {fileID: 1403468697205010387}
+  m_ColliderPrefab: {fileID: -6569396161636405815, guid: 6fbb0ef641c96a145b38f3be838851de, type: 3}
+  m_ActivePathTexture: {fileID: 2800000, guid: 84ed874d489b45449928bc756ed111a3, type: 3}
+  m_PathColourCutoff: 0.2
+  TreeParent: {fileID: 1403468698527175949}
+--- !u!114 &1403468697341247052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697341247045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2b24950caf0234ca3d76c21a1c6747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Comment: Rock placer and culler
+--- !u!114 &1403468697341247053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697341247045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e5ea30c234b6a488f6e53d8c28b8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TreeScaleRange: {x: 0.8, y: 1.2}
+  m_TreeRotYRange: {x: 0, y: 360}
+  m_NumTreesToSpawn: 5000
+  m_BottomLeftBoxCorner: {fileID: 1403468697803508287}
+  m_TopRightBoxCorner: {fileID: 1403468696794012106}
+  m_SpawnedTreeParent: {fileID: 1403468698367041688}
+  m_TreePrefabs:
+  - {fileID: 8290313280511737247, guid: c44f97ce45bbfa94b81efc57ed70d430, type: 3}
+  - {fileID: 8634316337573632551, guid: fcaed1ec07a427b4cabb57fa01013756, type: 3}
+  - {fileID: 5065752070336919419, guid: b5eec4242bbdb1d488b2cd677237d1d4, type: 3}
+  - {fileID: 601588320865706834, guid: f57e7e5014e91f344b05829433c89e2d, type: 3}
+  - {fileID: 3165763354246439238, guid: 63ea3987bed7a3444aed73f1222ae6f8, type: 3}
+  - {fileID: 8469466141152114907, guid: 9eb6b721272ba5842b138ebd6057bbe9, type: 3}
+  - {fileID: 4309112587631838051, guid: 638e614ab9a435c4f9990b7009636c04, type: 3}
+  - {fileID: 890050563589388856, guid: 03179d00d9a1aa540b75ae532de092ef, type: 3}
+  - {fileID: 52408107413372873, guid: b1f4a84ea56592e44b3f92192cea5194, type: 3}
+  - {fileID: 2369049389886458592, guid: 0d42542678da84b4796bc00bd51cf6b5, type: 3}
+  - {fileID: 8593416744360648346, guid: 5861daebaf01dbe4fbfc2d7af08fcaef, type: 3}
+  - {fileID: 4395528989251457870, guid: 1e19ae784b093864f9aad4e52684defd, type: 3}
+  - {fileID: 1158707739758307067, guid: f56c82df62cd0af4e8745030ec3ceb54, type: 3}
+  - {fileID: 4668392190901202164, guid: a945148f612acac40b21d13015ae31c2, type: 3}
+  - {fileID: 5542680906331049684, guid: 99bb1ae8f9ba7cb468f959255fdc73bf, type: 3}
+  - {fileID: 1424637697174926756, guid: 6917ec95ea353934daff97c648eb4838, type: 3}
+  - {fileID: 4018685931065886416, guid: 79b2b55b256f082459aadd4dfeb3102b, type: 3}
+  - {fileID: 3873439491459533988, guid: 5ac974a33c35ff1438f2a39e886e722f, type: 3}
+  - {fileID: 4585737353606592257, guid: ea5fa46bfa9bcbe45a451585de758f75, type: 3}
+  - {fileID: 4547389008565494657, guid: e181b9dd31db3a7469eee71a8a9b1d78, type: 3}
+  - {fileID: 2063231013505573914, guid: b6f7a3f2ed5ce674cae929dce2470826, type: 3}
+  - {fileID: 6488076083333523407, guid: 214094af8f02153458124c2725154607, type: 3}
+  - {fileID: 2632024807821881542, guid: 9c45c4a6492e9f74f9eac790df3c005f, type: 3}
+  - {fileID: 8638149329867983930, guid: cbb0497fa5d01ab4288e2519f7a746af, type: 3}
+--- !u!114 &1403468697341247050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697341247045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b611de96ad92cf24ab039c8a668aa2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BottomLeftBoxCorner: {fileID: 1403468697803508287}
+  m_TopRightBoxCorner: {fileID: 1403468696794012106}
+  m_SpawnedTreeParent: {fileID: 1403468698367041688}
+  m_KeepOnBlack: 0
+  m_KeepOnRed: 1
+  m_KeepOnGreen: 0
+  m_KeepOnBlue: 0
+  m_ActivePathTexture: {fileID: 2800000, guid: 9efda914056ec2840bb0e1fcb9a16502, type: 3}
+  m_PathColourCutoff: 0.2
+--- !u!1 &1403468697803508284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403468697803508287}
+  m_Layer: 0
+  m_Name: BottomLeftCorner
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403468697803508287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468697803508284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1403468697341247047}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1403468698367041689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403468698367041688}
+  m_Layer: 0
+  m_Name: RockParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403468698367041688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468698367041689}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1403468697341247047}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1403468698527175946
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403468698527175949}
+  m_Layer: 0
+  m_Name: TreeParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403468698527175949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403468698527175946}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1403468697341247047}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

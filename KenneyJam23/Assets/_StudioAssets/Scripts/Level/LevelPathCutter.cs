@@ -41,7 +41,10 @@ namespace RubberDucks.KenneyJam.Level
         private void Update()
         {
             // TODO: Add an event for picking up so we don't need to poll constantly
-            m_CanCutTrees = !m_CollisionInteractions.m_IsCarrying;
+            if (m_CollisionInteractions != null)
+            {
+                m_CanCutTrees = !m_CollisionInteractions.m_IsCarrying;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -51,11 +54,11 @@ namespace RubberDucks.KenneyJam.Level
                 if (other.TryGetComponent<LevelForestCollider>(out LevelForestCollider forestCollider))
                 {
                     forestCollider.ClearForest();
-                }
 
-                if (m_PlayerController != null)
-                {
-                    m_PlayerController.IsCuttingTrees = true;
+                    if (m_PlayerController != null)
+                    {
+                        m_PlayerController.IsCuttingTrees = true;
+                    }
                 }
             }
         }
@@ -64,7 +67,10 @@ namespace RubberDucks.KenneyJam.Level
         {
             if (m_PlayerController != null)
             {
-                m_PlayerController.IsCuttingTrees = false;
+                if (other.TryGetComponent<LevelForestCollider>(out LevelForestCollider forestCollider))
+                {
+                    m_PlayerController.IsCuttingTrees = false;
+                }
             }
         }
 
