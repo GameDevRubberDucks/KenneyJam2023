@@ -8,11 +8,13 @@
  * - Kody Wood
 */
 
-using DG.Tweening;
+using System;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
+
 using UnityEngine;
+
 using RubberDucks.KenneyJam.Interactions;
+using DG.Tweening;
 
 namespace RubberDucks.KenneyJam.Player
 {
@@ -44,18 +46,20 @@ namespace RubberDucks.KenneyJam.Player
         [SerializeField] private float m_Acceleration = 300.0f;
         private Vector3 m_LastLookDir = Vector3.forward;
 
-        private GameObject teasure;
+        [SerializeField] private GameObject arrow;
+        private GameObject[] playerList;
+        private Dictionary<Int32, GameObject> m_PlayerList = new Dictionary<int, GameObject>();
 
         //--- Unity Methods ---//
 
+        private void Start()
+        {
+            playerList = new GameObject[GameObject.FindGameObjectsWithTag("Player").Length];
+            playerList = GameObject.FindGameObjectsWithTag("Player");
+        }
 
         private void Update()
         {
-            //Vector3 m_velDir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-            //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-            //{
-            //    m_LastLookDir = m_velDir;
-            //}
             Vector3 m_velDir = new Vector3(Input.GetAxis(m_InputAxisX), 0.0f, Input.GetAxis(m_InputAxisZ));
             if (Input.GetAxisRaw(m_InputAxisX) != 0 || Input.GetAxisRaw(m_InputAxisZ) != 0)
             {
@@ -63,14 +67,18 @@ namespace RubberDucks.KenneyJam.Player
             }
             this.GetComponent<Rigidbody>().velocity += m_Acceleration * m_velDir * Time.deltaTime;
             UpdateRotation(m_LastLookDir);
+
+            //WayFinder();
+
         }
 
         //--- Public Methods ---//
-        public void InitializePlayer(Int32 playerInd)
+        public void InitializePlayer(Int32 playerInd, ref Dictionary<Int32, GameObject> playerList)
         {
             m_PlayerIndex = playerInd;
             m_InputAxisX = "Horizontal" + playerInd.ToString();
             m_InputAxisZ = "Vertical" + playerInd.ToString();
+            m_PlayerList = playerList;
         }
         //--- Protected Methods ---//
 
@@ -80,10 +88,32 @@ namespace RubberDucks.KenneyJam.Player
             this.transform.LookAt(this.transform.position + lookAt);
         }
 
+        /*
         void WayFinder()
         {
+            Debug.Log(playerList.Length);
+            foreach (var player in playerList)
+            {
+                if (gameObject.GetComponent<CollisionInteractions>().m_IsCarrying)
+                {
+                    GameObject lol = GameObject.FindGameObjectWithTag("Drop");
+                    if (lol)
+                    {
+                        arrow.transform.LookAt(lol.transform);
+                    }
 
-            teasure = GameObject.FindGameObjectWithTag("Pickup");
+                }
+                else if (player.GetComponent<CollisionInteractions>().m_IsCarrying)
+                {
+                    arrow.transform.LookAt(player.transform);
+                }
+                else if (GameObject.FindGameObjectWithTag("Pickup") != null)
+                {
+                    arrow.transform.LookAt(GameObject.FindGameObjectWithTag("Pickup").transform);
+                }
+
+            }
         }
+        */
     }
 }
