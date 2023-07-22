@@ -38,10 +38,7 @@ namespace RubberDucks.KenneyJam.Interactions
         //--- Private Methods ---//
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<Zone>(out Zone zone))
-            {
-                zone.CollideWithZone();
-            }
+            
 
             if (other.gameObject.CompareTag("Drop"))
             {
@@ -51,9 +48,14 @@ namespace RubberDucks.KenneyJam.Interactions
 
                     m_CurrentPickup.Clear();
 
+                    other.gameObject.GetComponent<Zone>().CollideWithZone(m_IsCarrying);
                 }
 
                 m_IsCarrying = false;
+            }
+            else if (other.gameObject.CompareTag("Collect"))
+            {
+                other.gameObject.GetComponent<Zone>().CollideWithZone(m_IsCarrying);
             }
 
         }

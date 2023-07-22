@@ -37,9 +37,9 @@ namespace RubberDucks.KenneyJam.Zones
 		}
 
 		//--- Public Methods ---//
-		public void CollideWithZone()
+		public void CollideWithZone(bool isCarrying)
 		{
-			if (m_IsDrop)
+			if (m_IsDrop && isCarrying)
 			{
 				//Add function to increase score here
 
