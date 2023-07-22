@@ -89,8 +89,7 @@ namespace RubberDucks.KenneyJam.GameManager
                 ++m_CurrentPlayers;
             }
 
-            m_GameTimer.StartTimer();
-            m_GameTimer.Duration = m_GameDuration;
+            m_GameTimer.StartTimer(m_GameDuration);
             m_GameTimer.m_Events.OnFinished.AddListener(CheckWinner);
             Debug.Log(m_PlayerList.Count);
 		}
