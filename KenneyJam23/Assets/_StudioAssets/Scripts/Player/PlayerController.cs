@@ -8,11 +8,12 @@
  * - Kody Wood
 */
 
-using DG.Tweening;
-using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
+
+using System;
+
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace RubberDucks.KenneyJam.Player
 {
@@ -27,49 +28,47 @@ namespace RubberDucks.KenneyJam.Player
         public EventList Events = default;
 
         //--- Properties ---//
-
+        //public Int32 PlayerIndex
+        //{
+        //    get => m_PlayerIndex; 
+        //    set => m_PlayerIndex = value;
+        //}
         //--- Public Variables ---//
 
         //--- Protected Variables ---//
 
         //--- Private Variables ---//
+        [SerializeField] private Int32 m_PlayerIndex = -1;
+        [SerializeField] private string m_InputAxisX = string.Empty;
+        [SerializeField] private string m_InputAxisZ = string.Empty;
+        [Header("Movement Variables")]
         [SerializeField] private float m_Acceleration = 300.0f;
         private Vector3 m_LastLookDir = Vector3.forward;
 
         //--- Unity Methods ---//
         private void Update()
         {
-            Vector3 m_velDir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            //Vector3 m_velDir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+            //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            //{
+            //    m_LastLookDir = m_velDir;
+            //}
+            Vector3 m_velDir = new Vector3(Input.GetAxis(m_InputAxisX), 0.0f, Input.GetAxis(m_InputAxisZ));
+            if (Input.GetAxisRaw(m_InputAxisX) != 0 || Input.GetAxisRaw(m_InputAxisZ) != 0)
             {
                 m_LastLookDir = m_velDir;
             }
             this.GetComponent<Rigidbody>().velocity += m_Acceleration * m_velDir * Time.deltaTime;
-
-
-
-            if (Input.GetKey(KeyCode.I))
-            {
-                this.GetComponent<Rigidbody>().velocity = m_Acceleration / 50.0f * Vector3.forward;
-            }
-            if (Input.GetKey(KeyCode.K))
-            {
-                this.GetComponent<Rigidbody>().velocity = m_Acceleration / 50.0f * Vector3.back;
-            }
-            if (Input.GetKey(KeyCode.L))
-            {
-                this.GetComponent<Rigidbody>().velocity = m_Acceleration / 50.0f * Vector3.right;
-            }
-            if (Input.GetKey(KeyCode.J))
-            {
-                this.GetComponent<Rigidbody>().velocity = m_Acceleration / 50.0f * Vector3.left;
-            }
-
             UpdateRotation(m_LastLookDir);
         }
 
         //--- Public Methods ---//
-
+        public void InitializePlayer(Int32 playerInd)
+        {
+            m_PlayerIndex = playerInd;
+            m_InputAxisX = "Horizontal" + playerInd.ToString();
+            m_InputAxisZ = "Vertical" + playerInd.ToString();
+        }
         //--- Protected Methods ---//
 
         //--- Private Methods ---//
