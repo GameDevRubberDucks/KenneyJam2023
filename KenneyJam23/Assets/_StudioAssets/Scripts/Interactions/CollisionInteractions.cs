@@ -45,8 +45,12 @@ namespace RubberDucks.KenneyJam.Interactions
 
             if (other.gameObject.CompareTag("Drop"))
             {
-                Destroy(m_CurrentPickup[0]);
-                m_CurrentPickup.Clear();
+                if (m_CurrentPickup.Count > 0)
+                {
+                    Destroy(m_CurrentPickup[0]);
+                    m_CurrentPickup.Clear();
+
+                }
 
                 m_IsCarrying = false;
             }
@@ -63,7 +67,7 @@ namespace RubberDucks.KenneyJam.Interactions
                     m_CurrentPickup.Clear();
 
                     m_IsCarrying = false;
-                }          
+                }
             }
             else if (collision.gameObject.CompareTag("Pickup"))
             {
