@@ -10,14 +10,15 @@
 */
 
 using System;
+using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.Events;
 
 using RubberDucks.Utilities;
-using System.Collections.Generic;
-using RubberDucks.KenneyJam.Player;
+using RubberDucks.Utilities.Timing;
 using RubberDucks.KenneyJam.Jam;
+using RubberDucks.KenneyJam.Player;
 
 
 namespace RubberDucks.KenneyJam.GameManager
@@ -47,14 +48,15 @@ namespace RubberDucks.KenneyJam.GameManager
         //--- Protected Variables 
 
         //--- Private Variables ---//
-        [Header("Game Settings")]
-		
-
 		[Header("Player Variables")]
         [SerializeField] private int m_NumPlayers = 4;
         [SerializeField] private int m_MaxPlayers = 4;
         [SerializeField] private int m_CurrentPlayers = 0;
         Dictionary<int, GameObject> m_PlayerList = new Dictionary<int, GameObject>();
+
+        [Header("Timer Variables")]
+        [SerializeField] private Timer m_GameTimer = new Timer();
+        [SerializeField] private float m_GameDuration = 180.0f;
 
         //--- Unity Methods ---//
         private void OnValidate()
@@ -65,6 +67,11 @@ namespace RubberDucks.KenneyJam.GameManager
         private void Start()
         {
             StartGame();
+            
+        }
+        private void Update() 
+        {
+            m_GameTimer.UpdateTimer(Time.deltaTime);
         }
 
         //--- Public Methods ---//
@@ -81,11 +88,18 @@ namespace RubberDucks.KenneyJam.GameManager
                 m_PlayerList[m_CurrentPlayers] = newPlayer;
                 ++m_CurrentPlayers;
             }
+
+            m_GameTimer.StartTimer();
+            m_GameTimer.Duration = m_GameDuration;
+            m_GameTimer.m_Events.OnFinished.AddListener(CheckWinner);
+            Debug.Log(m_PlayerList.Count);
 		}
 
         private void CheckWinner()
         {
-            List<int> currentLeaderIndex = new List<int>();
+            Time.timeScale = 0.0f;
+            List<int> currentLeaderIndex = new List<int>(0);
+            currentLeaderIndex.Add(0);
             for(int i = 1; i<m_CurrentPlayers; i++)
             {
                 int score1 = m_PlayerList[currentLeaderIndex[0]].GetComponent<PlayerController>().Score;
@@ -103,6 +117,11 @@ namespace RubberDucks.KenneyJam.GameManager
                 {
                     currentLeaderIndex.Add(i);
                 }
+            }
+            Debug.Log($"There are {currentLeaderIndex.Count} Winners");
+            for (int i = 0; i < currentLeaderIndex.Count; ++i)
+            {
+                Debug.Log($"Player {m_PlayerList[currentLeaderIndex[i]].GetComponent<PlayerController>().PlayerIndex + 1} wins");
             }
         }
 	}
