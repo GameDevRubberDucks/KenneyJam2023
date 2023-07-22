@@ -83,6 +83,11 @@ namespace RubberDucks.KenneyJam.Player
         private Dictionary<int, GameObject> m_PlayerList = new Dictionary<int, GameObject>();
 
         //--- Unity Methods ---//
+        private void Awake()
+        {
+            TryTransform(false);
+        }
+
         private void Update()
         {
             float speedMultiplier = (m_IsTruckForm) ? 1.0f : m_BulldozerSpeedMultiplier;
@@ -96,10 +101,10 @@ namespace RubberDucks.KenneyJam.Player
 
             WayFinder();
 
-            if (Input.GetButtonDown(m_TransformInput))
-            {
-                TryTransform(!m_IsTruckForm);
-            }
+            //if (Input.GetButtonDown(m_TransformInput))
+            //{
+            //    TryTransform(!m_IsTruckForm);
+            //}
         }
 
         //--- Public Methods ---//

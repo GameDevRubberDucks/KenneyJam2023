@@ -67,6 +67,7 @@ namespace RubberDucks.KenneyJam.Interactions
                 }
 
                 m_IsCarrying = false;
+                m_PlayerController.TryTransform(false);
             }
             else if (other.gameObject.CompareTag("Collect"))
             {
@@ -91,7 +92,8 @@ namespace RubberDucks.KenneyJam.Interactions
                     m_PickupHeldTimer.StopTimer();
 
                     m_IsCarrying = false;
-                    collision.gameObject.GetComponent<PlayerController>().TryTransform(false);
+
+                    m_PlayerController.TryTransform(false);
                 }
             }
             else if (collision.gameObject.CompareTag("Pickup"))
