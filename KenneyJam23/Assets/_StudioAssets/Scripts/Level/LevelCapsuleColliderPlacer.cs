@@ -40,8 +40,8 @@ namespace RubberDucks.KenneyJam.Level
         [Header("Spawning Information")]
         [HideInInspector][Range(0, 50)][SerializeField] public int m_NumSamplesPerAxis = 25;
         [SerializeField] private Transform m_ColliderParent = default;
-        [SerializeField] private CapsuleCollider m_ColliderPrefab = default;
-        //[SerializeField] private SphereCollider m_ColliderPrefab = default;
+        //[SerializeField] private CapsuleCollider m_ColliderPrefab = default;
+        [SerializeField] private SphereCollider m_ColliderPrefab = default;
 
         [Header("Culling Information")]
         [HideInInspector][SerializeField] public Texture2D m_ActivePathTexture = default;
@@ -74,11 +74,11 @@ namespace RubberDucks.KenneyJam.Level
 
                     Vector3 spawnPosition = m_BottomLeftBoxCorner.position + spawnPositionOffset;
 
-                    CapsuleCollider capsule = Instantiate<CapsuleCollider>(m_ColliderPrefab, spawnPosition, Quaternion.identity, m_ColliderParent);
-                    capsule.radius = capsuleRadius;
-
-                    //SphereCollider capsule = Instantiate<SphereCollider>(m_ColliderPrefab, spawnPosition, Quaternion.identity, m_ColliderParent);
+                    //CapsuleCollider capsule = Instantiate<CapsuleCollider>(m_ColliderPrefab, spawnPosition, Quaternion.identity, m_ColliderParent);
                     //capsule.radius = capsuleRadius;
+
+                    SphereCollider capsule = Instantiate<SphereCollider>(m_ColliderPrefab, spawnPosition, Quaternion.identity, m_ColliderParent);
+                    capsule.radius = capsuleRadius;
 
                     Vector2Int spawnCoords = new Vector2Int(x, y);
                     LevelForestCollider forestComp = capsule.GetComponent<LevelForestCollider>();

@@ -126,12 +126,13 @@ MonoBehaviour:
   m_TreePlacer: {fileID: 1403468697341247044}
   m_NumTreesToSpawn: 5000
   m_TreeCuller: {fileID: 1403468697341247051}
+  m_GenerateRocks: 0
   m_RockPlacer: {fileID: 1403468697341247053}
   m_NumRocksToSpawn: 5000
   m_RockCuller: {fileID: 1403468697341247050}
   m_CapsulePlacer: {fileID: 1403468697341247049}
-  m_NumCollidersPerAxis: 50
-  m_LevelScale: 3
+  m_NumCollidersPerAxis: 100
+  m_LevelScale: 6
 --- !u!114 &1403468697341247054
 MonoBehaviour:
   m_ObjectHideFlags: 0
