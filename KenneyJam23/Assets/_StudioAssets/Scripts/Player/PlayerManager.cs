@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using RubberDucks.KenneyJam.Player;
 using FullscreenEditor;
+using TMPro;
 
 namespace RubberDucks.KenneyJam.Jam
 {
@@ -39,6 +40,7 @@ namespace RubberDucks.KenneyJam.Jam
         [Header("Dependencies")]
         [SerializeField] private GameObject m_PlayerPrefab = default;
         [SerializeField] private List<Transform> m_SpawnLocations = new List<Transform>();
+        [SerializeField] private List<TextMeshProUGUI> m_PlayerScoreUIs = new List<TextMeshProUGUI>();
 
         [Header("Player Variables")]
         Dictionary<int, GameObject> m_PlayerList = new Dictionary<int, GameObject>();
@@ -50,7 +52,7 @@ namespace RubberDucks.KenneyJam.Jam
         {
             GameObject newPlayer = Instantiate(m_PlayerPrefab, m_SpawnLocations[playerIndex].position, Quaternion.identity);
             m_PlayerList[playerIndex] = newPlayer;
-            newPlayer.GetComponent<PlayerController>().InitializePlayer(playerIndex, m_PlayerList);
+            newPlayer.GetComponent<PlayerController>().InitializePlayer(playerIndex, m_PlayerList, m_PlayerScoreUIs[playerIndex]);
             return newPlayer;
         }
 

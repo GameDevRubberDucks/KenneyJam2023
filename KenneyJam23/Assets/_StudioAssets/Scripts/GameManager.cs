@@ -20,7 +20,6 @@ using RubberDucks.Utilities.Timing;
 using RubberDucks.KenneyJam.Jam;
 using RubberDucks.KenneyJam.Player;
 
-
 namespace RubberDucks.KenneyJam.GameManager
 {
 	public class GameManager : PersistentSingleton<GameManager>

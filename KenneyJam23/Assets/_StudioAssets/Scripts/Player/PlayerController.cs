@@ -11,7 +11,9 @@
 using System;
 using System.Collections.Generic;
 
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 using RubberDucks.Utilities;
 using RubberDucks.KenneyJam.Interactions;
@@ -25,6 +27,7 @@ namespace RubberDucks.KenneyJam.Player
         [System.Serializable]
         public class EventList
         {
+            public UnityEvent OnPlayerScoreChange;
         }
         [Header("Events")]
         public EventList Events = default;
@@ -39,6 +42,11 @@ namespace RubberDucks.KenneyJam.Player
         {
             get => m_Score;
             set => m_Score = value;
+        }
+        public TextMeshProUGUI PlayerScoreUI
+        {
+            get => m_PlayerScoreUI;
+            set => m_PlayerScoreUI = value;
         }
         //--- Public Variables ---//
 
@@ -64,6 +72,9 @@ namespace RubberDucks.KenneyJam.Player
 
         [Header("Colours")]
         [SerializeField] private Color[] m_PlayerColours = default;
+
+        [Header("UI Variables")]
+        [SerializeField] private TextMeshProUGUI m_PlayerScoreUI = default;
 
         private Vector3 m_LastLookDir = Vector3.forward;
         private bool m_IsTruckForm = true;
@@ -92,14 +103,16 @@ namespace RubberDucks.KenneyJam.Player
         }
 
         //--- Public Methods ---//
-        public void InitializePlayer(int playerInd, Dictionary<int, GameObject> playerList)
+        public void InitializePlayer(int playerInd, Dictionary<int, GameObject> playerList, TextMeshProUGUI playerScoreUI)
         {
             m_PlayerIndex = playerInd;
             m_InputAxisX = "Horizontal" + playerInd.ToString();
             m_InputAxisZ = "Vertical" + playerInd.ToString();
             m_TransformInput = "Transform" + playerInd.ToString();
             m_PlayerList = playerList;
+            m_PlayerScoreUI = playerScoreUI;
 
+            this.Events.OnPlayerScoreChange.AddListener(UpdateScoreUI);
             ApplyPlayerColours();
         }
 
@@ -137,7 +150,6 @@ namespace RubberDucks.KenneyJam.Player
         {
             this.transform.LookAt(this.transform.position + lookAt);
         }
-
 
         void WayFinder()
         {
@@ -180,5 +192,11 @@ namespace RubberDucks.KenneyJam.Player
             arrow.transform.forward = vec;
 
         }
+
+        private void UpdateScoreUI()
+        {
+            m_PlayerScoreUI.text = ($"P{PlayerIndex + 1}: {m_Score}");
+        }
+
     }
 }

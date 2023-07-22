@@ -5,9 +5,11 @@
  * - 
  * 
  * Author(s): 
- * - 
+ * - Alain
+ * - Kody Wood
 */
 
+using RubberDucks.KenneyJam.Player;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,21 +17,35 @@ namespace RubberDucks.KenneyJam.Interactions
 {
 	public class Pickup : MonoBehaviour
 	{
-		//--- Properties ---//
+        //--- Properties ---//
+		public int DropOffPoints
+		{
+			get => m_DropOffPoints;
+		}
+        public int CarryPointsRemaining
+        {
+            get => m_CarryPointsRemaining;
+        }
+        //--- Public Variables ---//
 
-		//--- Public Variables ---//
+        //--- Protected Variables ---//
 
-		//--- Protected Variables ---//
-
-		//--- Private Variables ---//
-		[SerializeField] private bool m_IsCarried = false;
-
+        //--- Private Variables ---//
+        [SerializeField] private bool m_IsCarried = false;
 		[SerializeField] private int m_ResetHeight;
 
-		//--- Unity Methods ---//
+		[Header("Pick Up Score Variables")]
+		[SerializeField] private int m_MaxCarryPoints = 10;
+		[SerializeField] private int m_CarryPointsRemaining = 10;
+		[SerializeField] private int m_DropOffPoints = 20;
 
-		//--- Public Methods ---//
-		public void UpdatePickupStatus()
+        [SerializeField] private float m_SecondsToCarryScore = 3.0f;
+        private float m_CarryScoreTimer = 3.0f;
+
+        //--- Unity Methods ---//
+
+        //--- Public Methods ---//
+        public void UpdatePickupStatus()
 		{
 			if (m_IsCarried)
 			{
@@ -41,10 +57,15 @@ namespace RubberDucks.KenneyJam.Interactions
 			}
 		}
 
-		//--- Protected Methods ---//
+        public void UpdateCarryPoints(int value)
+        {
+            m_CarryPointsRemaining -= value;
+        }
 
-		//--- Private Methods ---//
-		private void ResetToCarryDefault()
+        //--- Protected Methods ---//
+
+        //--- Private Methods ---//
+        private void ResetToCarryDefault()
 		{
 			//transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 			//transform.localPosition = Vector3.up * m_ResetHeight;
@@ -64,5 +85,7 @@ namespace RubberDucks.KenneyJam.Interactions
 
 			this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Force);
 		}
+
+		
 	}
 }
