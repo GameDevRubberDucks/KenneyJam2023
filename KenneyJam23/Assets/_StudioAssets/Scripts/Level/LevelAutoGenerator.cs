@@ -42,8 +42,14 @@ namespace RubberDucks.KenneyJam.Level
 		[Header("Tree Data")]
 		[SerializeField] private LevelTreePlacer m_TreePlacer = default;
         [Range(0, 10000)][SerializeField] private int m_NumTreesToSpawn = 5000;
+        [SerializeField] private LevelTreePathCuller m_TreeCuller = default;
 
-		[Header("Collider Data")]
+        [Header("Rock Data")]
+        [SerializeField] private LevelTreePlacer m_RockPlacer = default;
+        [Range(0, 10000)][SerializeField] private int m_NumRocksToSpawn = 5000;
+		[SerializeField] private LevelTreePathCuller m_RockCuller = default;
+
+        [Header("Collider Data")]
 		[SerializeField] private LevelCapsuleColliderPlacer m_CapsulePlacer = default;
         [Range(0, 100)][SerializeField] private int m_NumCollidersPerAxis = 50;
 
@@ -61,8 +67,16 @@ namespace RubberDucks.KenneyJam.Level
 			m_TreePlacer.m_BottomLeftBoxCorner = m_BottomLeftBoxCorner;
 			m_TreePlacer.m_TopRightBoxCorner = m_TopRightBoxCorner;
 			m_TreePlacer.m_NumTreesToSpawn = m_NumTreesToSpawn;
+            m_TreeCuller.m_ActivePathTexture = m_ActivePathTexture;
+            m_TreeCuller.m_PathColourCutoff = m_PathColourCutoff;
 
-			m_CapsulePlacer.m_BottomLeftBoxCorner = m_BottomLeftBoxCorner;
+            m_RockPlacer.m_BottomLeftBoxCorner = m_BottomLeftBoxCorner;
+            m_RockPlacer.m_TopRightBoxCorner = m_TopRightBoxCorner;
+            m_RockPlacer.m_NumTreesToSpawn = m_NumRocksToSpawn;
+			m_RockCuller.m_ActivePathTexture = m_ActivePathTexture;
+			m_RockCuller.m_PathColourCutoff = m_PathColourCutoff;
+
+            m_CapsulePlacer.m_BottomLeftBoxCorner = m_BottomLeftBoxCorner;
             m_CapsulePlacer.m_TopRightBoxCorner = m_TopRightBoxCorner;
 			m_CapsulePlacer.m_NumSamplesPerAxis = m_NumCollidersPerAxis;
 			m_CapsulePlacer.m_ActivePathTexture = m_ActivePathTexture;
@@ -75,11 +89,16 @@ namespace RubberDucks.KenneyJam.Level
 			DateTime startTime = DateTime.Now;
 
 			m_TreePlacer.SpawnTrees();
+			m_TreeCuller.CullTrees();
+
 			m_CapsulePlacer.SpawnCapsules();
 			m_CapsulePlacer.RegisterTreesToCapsules();
 			m_CapsulePlacer.CullCapsules();
 
-            DateTime endTime = DateTime.Now;
+			m_RockPlacer.SpawnTrees();
+			m_RockCuller.CullTrees();
+
+			DateTime endTime = DateTime.Now;
 
             Debug.Log($"Generated level in {endTime.Subtract(startTime).Milliseconds} milliseconds");
 		}
