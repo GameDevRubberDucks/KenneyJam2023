@@ -25,9 +25,9 @@ namespace RubberDucks.KenneyJam.Interactions
 		[SerializeField] private bool m_IsCarried = false;
 
 		[SerializeField] private int m_ResetHeight;
-		
+
 		//--- Unity Methods ---//
-		
+
 		//--- Public Methods ---//
 		public void UpdatePickupStatus()
 		{
@@ -46,7 +46,8 @@ namespace RubberDucks.KenneyJam.Interactions
 		//--- Private Methods ---//
 		private void ResetToCarryDefault()
 		{
-			transform.localPosition = Vector3.up * m_ResetHeight;
+			//transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+			//transform.localPosition = Vector3.up * m_ResetHeight;
 
 			m_IsCarried = true;
 			gameObject.SetActive(false);
@@ -56,9 +57,11 @@ namespace RubberDucks.KenneyJam.Interactions
 		{
 			transform.parent = null;
 
+			transform.localPosition += (Vector3.up * m_ResetHeight);
+
 			m_IsCarried = false;
 			gameObject.SetActive(true);
-			
+
 			this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Force);
 		}
 	}

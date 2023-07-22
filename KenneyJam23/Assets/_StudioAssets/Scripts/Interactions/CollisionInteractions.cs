@@ -48,18 +48,22 @@ namespace RubberDucks.KenneyJam.Interactions
                 if (m_CurrentPickup.Count > 0)
                 {
                     Destroy(m_CurrentPickup[0]);
+
                     m_CurrentPickup.Clear();
 
                 }
 
                 m_IsCarrying = false;
             }
+
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
+
+                Debug.Log("Player Collision");
                 //DropItem(false, collision.gameObject);
                 if (m_CurrentPickup.Count > 0)
                 {
