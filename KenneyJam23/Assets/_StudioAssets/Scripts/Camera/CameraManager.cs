@@ -34,6 +34,9 @@ namespace RubberDucks.KenneyJam.Camera
             DetchTargetFromGroup();
         }
 
+        /*
+        This function will check the distance of each target from the center of the group.
+        */
         void DetchTargetFromGroup()
         {
             //store location of the center of the group
