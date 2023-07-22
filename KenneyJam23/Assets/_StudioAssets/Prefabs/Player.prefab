@@ -231,7 +231,7 @@ MonoBehaviour:
   m_InputAxisZ: 
   m_TransformInput: 
   m_Acceleration: 300
-  m_BulldozerSpeedMultiplier: 0.5
+  m_BulldozerSpeedMultiplier: 0.8
   m_TruckVisuals: {fileID: 3337284866968179385}
   m_BulldozerVisuals: {fileID: 3387125402204788345}
   m_ForestCutterComp: {fileID: 8578420915797595218}
