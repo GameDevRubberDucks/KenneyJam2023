@@ -1,3 +1,9 @@
+/*
+This script manages the cinemachine cameras.
+
+By: Bo
+ 
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

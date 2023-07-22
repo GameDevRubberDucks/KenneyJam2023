@@ -907,6 +907,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1045000053, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
+      propertyPath: breakAwayDistance
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 5794058902564920646, guid: 424f4eed7830140f7aee5c30a9c84dca, type: 3}
       propertyPath: near clip plane
       value: 0.001
