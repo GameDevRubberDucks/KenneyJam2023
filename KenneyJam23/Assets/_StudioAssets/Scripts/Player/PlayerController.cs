@@ -117,22 +117,25 @@ namespace RubberDucks.KenneyJam.Player
         void WayFinder()
         {
             Debug.Log("WayFinder() player count = " + m_PlayerList.Count);
-            foreach (var player in m_PlayerList.Values)
+            if (gameObject.GetComponent<CollisionInteractions>().m_IsCarrying)
             {
-                if (gameObject.GetComponent<CollisionInteractions>().m_IsCarrying)
+                GameObject lol = GameObject.FindGameObjectWithTag("Drop");
+                if (lol)
                 {
-                    GameObject lol = GameObject.FindGameObjectWithTag("Drop");
-                    if (lol)
+                    LookAt2D(lol.transform);
+                }
+            }
+            else
+            {
+                foreach (var player in m_PlayerList.Values)
+                {
+                    if (player.GetComponent<CollisionInteractions>().m_IsCarrying)
                     {
-                        LookAt2D(lol.transform);
+                        LookAt2D(player.transform);
+                        return;
                     }
-
                 }
-                else if (player.GetComponent<CollisionInteractions>().m_IsCarrying)
-                {
-                    LookAt2D(player.transform);
-                }
-                else if (GameObject.FindGameObjectWithTag("Collect") != null)
+                if (GameObject.FindGameObjectWithTag("Collect") != null)
                 {
                     LookAt2D(GameObject.FindGameObjectWithTag("Collect").transform);
                 }
@@ -140,7 +143,6 @@ namespace RubberDucks.KenneyJam.Player
                 {
                     LookAt2D(GameObject.FindGameObjectWithTag("Pickup").transform);
                 }
-
             }
         }
 

@@ -4,10 +4,9 @@ This script manages the cinemachine cameras.
 By: Bo
  
 */
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using RubberDucks.KenneyJam.GameManager;
 namespace RubberDucks.KenneyJam.Camera
 {
     public class CameraManager : MonoBehaviour
@@ -18,12 +17,14 @@ namespace RubberDucks.KenneyJam.Camera
 
         private Vector3 groupCenter;
         private float[] targetDistanceFromCenter;
-        private int[] targetWeight;
 
         // Start is called before the first frame update
         void Start()
         {
-            targetWeight = new int[targetGroup.m_Targets.Length];
+            foreach (var player in GameManager.GameManager.Instance.PlayerList)
+            {
+                targetGroup.AddMember(player.Value.transform, 1.0f, 2.0f);
+            }
             targetDistanceFromCenter = new float[targetGroup.m_Targets.Length];
         }
 
