@@ -118,22 +118,36 @@ namespace RubberDucks.KenneyJam.Player
                     GameObject lol = GameObject.FindGameObjectWithTag("Drop");
                     if (lol)
                     {
-                        arrow.transform.LookAt(lol.transform);
+                        LookAt2D(lol.transform);
                     }
 
                 }
                 else if (player.GetComponent<CollisionInteractions>().m_IsCarrying)
                 {
-                    arrow.transform.LookAt(player.transform);
+                    LookAt2D(player.transform);
+                }
+                else if (GameObject.FindGameObjectWithTag("Collect") != null)
+                {
+                    LookAt2D(GameObject.FindGameObjectWithTag("Collect").transform);
                 }
                 else if (GameObject.FindGameObjectWithTag("Pickup") != null)
                 {
-                    arrow.transform.LookAt(GameObject.FindGameObjectWithTag("Pickup").transform);
+                    LookAt2D(GameObject.FindGameObjectWithTag("Pickup").transform);
                 }
 
             }
         }
 
+        //get the vector between the you and the target, zero out the y, normalize it and then set it as the farword for the arrow.
+        void LookAt2D(Transform target)
+        {
+
+            Vector3 vec = target.position - transform.position;
+            vec.y = 0.0f;
+            vec.Normalize();
+            arrow.transform.forward = vec;
+
+        }
         private void TryTransform()
         {
             Debug.Log("Trying transform for player with index " + m_PlayerIndex);
