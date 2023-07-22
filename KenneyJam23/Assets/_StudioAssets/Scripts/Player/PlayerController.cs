@@ -141,7 +141,6 @@ namespace RubberDucks.KenneyJam.Player
 
         void WayFinder()
         {
-            Debug.Log("WayFinder() player count = " + m_PlayerList.Count);
             if (gameObject.GetComponent<CollisionInteractions>().m_IsCarrying)
             {
                 GameObject lol = GameObject.FindGameObjectWithTag("Drop");
