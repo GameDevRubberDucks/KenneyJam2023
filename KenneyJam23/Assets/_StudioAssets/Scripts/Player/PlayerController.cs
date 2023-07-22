@@ -29,11 +29,11 @@ namespace RubberDucks.KenneyJam.Player
         public EventList Events = default;
 
         //--- Properties ---//
-        //public Int32 PlayerIndex
-        //{
-        //    get => m_PlayerIndex; 
-        //    set => m_PlayerIndex = value;
-        //}
+        public int PlayerIndex
+        {
+            get => m_PlayerIndex; 
+            set => m_PlayerIndex = value;
+        }
         public int Score
         {
             get => m_Score;

@@ -610,6 +610,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &673918562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5312005473575738019, guid: bb36bd4c34f953b4d9b1c5d30f20cec9, type: 3}
+  m_PrefabInstance: {fileID: 5027275224391040141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &673918565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673918562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b6fc6d073bfe649be61aadeeb23e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    OnFinished:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: RubberDucks.KenneyJam.GameManager.GameManager,
+            Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    OnStoppedEarly:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTimeLeftUpdated:
+      m_PersistentCalls:
+        m_Calls: []
+  m_SetDurationFromOtherScript: 1
+  m_Duration: 10
+  m_ShouldLoop: 0
 --- !u!1 &701805167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,6 +1285,14 @@ PrefabInstance:
     - target: {fileID: 1566447377147042082, guid: bb36bd4c34f953b4d9b1c5d30f20cec9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027275224391040143, guid: bb36bd4c34f953b4d9b1c5d30f20cec9, type: 3}
+      propertyPath: m_GameTimer
+      value: 
+      objectReference: {fileID: 673918565}
+    - target: {fileID: 5027275224391040143, guid: bb36bd4c34f953b4d9b1c5d30f20cec9, type: 3}
+      propertyPath: m_GameDuration
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5027275224391040143, guid: bb36bd4c34f953b4d9b1c5d30f20cec9, type: 3}
       propertyPath: m_SpawnLocations.Array.data[0]
