@@ -89,7 +89,7 @@ namespace RubberDucks.KenneyJam.Player
         }
 
         //--- Public Methods ---//
-        public void InitializePlayer(int playerInd, ref Dictionary<int, GameObject> playerList)
+        public void InitializePlayer(int playerInd, Dictionary<int, GameObject> playerList)
         {
             m_PlayerIndex = playerInd;
             m_InputAxisX = "Horizontal" + playerInd.ToString();

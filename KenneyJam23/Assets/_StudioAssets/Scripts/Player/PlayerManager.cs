@@ -49,7 +49,8 @@ namespace RubberDucks.KenneyJam.Jam
         public GameObject NewPlayer(int playerIndex)
         {
             GameObject newPlayer = Instantiate(m_PlayerPrefab, m_SpawnLocations[playerIndex].position, Quaternion.identity);
-            newPlayer.GetComponent<PlayerController>().InitializePlayer(playerIndex, ref m_PlayerList);
+            m_PlayerList[playerIndex] = newPlayer;
+            newPlayer.GetComponent<PlayerController>().InitializePlayer(playerIndex, m_PlayerList);
             return newPlayer;
         }
 
