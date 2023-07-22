@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using RubberDucks.Utilities;
+using RubberDucks.KenneyJam.Interactions;
 
 namespace RubberDucks.KenneyJam.Player
 {
