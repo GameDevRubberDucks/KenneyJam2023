@@ -41,40 +41,20 @@ namespace RubberDucks.KenneyJam.Jam
         [SerializeField] private List<Transform> m_SpawnLocations = new List<Transform>();
 
         [Header("Player Variables")]
-        [SerializeField] private Int32 m_MaxPlayers = 4;
-        [SerializeField] private Int32 m_CurrentPlayers = 0;
-        Dictionary<Int32, GameObject> m_PlayerList = new Dictionary<Int32, GameObject>();
+        Dictionary<int, GameObject> m_PlayerList = new Dictionary<int, GameObject>();
 
         //--- Unity Methods ---//
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.P) && m_CurrentPlayers + 1 <= m_MaxPlayers)
-            {
-                GameObject newPlayer = Instantiate(m_PlayerPrefab, m_SpawnLocations[m_CurrentPlayers].position, Quaternion.identity);
-                m_PlayerList[m_CurrentPlayers] = newPlayer;
-                newPlayer.GetComponent<PlayerController>().InitializePlayer(m_CurrentPlayers, m_PlayerList);
-                ++m_CurrentPlayers;
-            }
-            if (Input.GetKeyDown(KeyCode.O) && m_CurrentPlayers - 1 != 0)
-            {
-                if (m_PlayerList.ContainsKey(m_CurrentPlayers - 1))
-                {
-                    --m_CurrentPlayers;
-                    GameObject tempPlayer = m_PlayerList[m_CurrentPlayers];
-                    m_PlayerList.Remove(m_CurrentPlayers);
-                    Destroy(tempPlayer);
-                }
-            }
-        }
 
         //--- Public Methods ---//
+        public GameObject NewPlayer(int playerIndex)
+        {
+            GameObject newPlayer = Instantiate(m_PlayerPrefab, m_SpawnLocations[playerIndex].position, Quaternion.identity);
+            newPlayer.GetComponent<PlayerController>().InitializePlayer(playerIndex, ref m_PlayerList);
+            return newPlayer;
+        }
 
         //--- Protected Methods ---//
 
         //--- Private Methods ---//
-        private void NewPlayer()
-        {
-
-        }
     }
 }

@@ -13,8 +13,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using RubberDucks.KenneyJam.Interactions;
-using System;
+using RubberDucks.Utilities;
 
 namespace RubberDucks.KenneyJam.Player
 {
@@ -34,7 +33,11 @@ namespace RubberDucks.KenneyJam.Player
         //    get => m_PlayerIndex; 
         //    set => m_PlayerIndex = value;
         //}
-
+        public int Score
+        {
+            get => m_Score;
+            set => m_Score = value;
+        }
         public bool IsCuttingTrees
         {
             get => m_IsCuttingTrees;
@@ -46,7 +49,9 @@ namespace RubberDucks.KenneyJam.Player
         //--- Protected Variables ---//
 
         //--- Private Variables ---//
-        [SerializeField] private Int32 m_PlayerIndex = -1;
+        [Header("Player Variables")]
+        [SerializeField] private int m_PlayerIndex = -1;
+        [SerializeField] private int m_Score = 0;
         [SerializeField] private string m_InputAxisX = string.Empty;
         [SerializeField] private string m_InputAxisZ = string.Empty;
         [SerializeField] private string m_TransformInput = string.Empty;
@@ -59,7 +64,7 @@ namespace RubberDucks.KenneyJam.Player
         private bool m_IsCuttingTrees = false;
 
         [SerializeField] private GameObject arrow;
-        private Dictionary<Int32, GameObject> m_PlayerList = new Dictionary<int, GameObject>();
+        private Dictionary<int, GameObject> m_PlayerList = new Dictionary<int, GameObject>();
 
         //--- Unity Methods ---//
 
@@ -89,7 +94,7 @@ namespace RubberDucks.KenneyJam.Player
         }
 
         //--- Public Methods ---//
-        public void InitializePlayer(Int32 playerInd, Dictionary<Int32, GameObject> playerList)
+        public void InitializePlayer(int playerInd, ref Dictionary<int, GameObject> playerList)
         {
             Debug.Log("InitializePlayers(). Num players = " + playerList.Count);
 
