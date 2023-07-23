@@ -76,6 +76,11 @@ namespace RubberDucks.KenneyJam.Player
         [SerializeField] private LevelPathCutter m_ForestCutterComp = default;
         [SerializeField] private CollisionInteractions m_InteractionsComp = default;
 
+        [Header("TireTreads")]
+        public TrailRenderer[] m_TireRenderers = default;
+        public float m_BulldozerWidth = 1.0f;
+        public float m_TruckWidth = 0.5f;
+
         [Header("Colours")]
         [SerializeField] private Color[] m_PlayerColours = default;
         [SerializeField] private Outline[] m_PlayerOutlines = default;
@@ -143,6 +148,12 @@ namespace RubberDucks.KenneyJam.Player
             m_ForestCutterComp.CanCutTrees = !toTruck;
 
             m_IsTruckForm = toTruck;
+
+            float tireTreadWidth = (toTruck) ? m_TruckWidth : m_BulldozerWidth;
+            foreach(var lr in m_TireRenderers)
+            {
+                lr.startWidth = tireTreadWidth;
+            }
         }
 
         public void ApplyPlayerColours()
