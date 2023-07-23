@@ -23,7 +23,7 @@ using RubberDucks.KenneyJam.Player;
 
 namespace RubberDucks.KenneyJam.GameManager
 {
-    public class GameManager : PersistentSingleton<GameManager>
+    public class GameManager : Singleton<GameManager>
     {
         //--- Events ---//
         [System.Serializable]
@@ -48,12 +48,12 @@ namespace RubberDucks.KenneyJam.GameManager
         }
 
         //--- Public Variables ---//
-
+        public static int m_NumPlayers = 4;
         //--- Protected Variables 
 
         //--- Private Variables ---//
         [Header("Player Variables")]
-        [SerializeField] private int m_NumPlayers = 4;
+        //public static int m_NumPlayers = 4;
         [SerializeField] private int m_MaxPlayers = 4;
         [SerializeField] private int m_CurrentPlayers = 0;
         Dictionary<int, GameObject> m_PlayerList = new Dictionary<int, GameObject>();
@@ -70,6 +70,7 @@ namespace RubberDucks.KenneyJam.GameManager
 
         private void Start()
         {
+            Time.timeScale = 1.0f;
             StartGame();
 
         }
@@ -97,7 +98,8 @@ namespace RubberDucks.KenneyJam.GameManager
             m_GameTimer.m_Events.OnFinished.AddListener(CheckWinner);
             Debug.Log(m_PlayerList.Count);
 
-            AudioManager.Instance.PlayLoopingAudio("BGM",AudioConstant.MUSIC_Game,AudioChannel.Music, 0.5f);
+            AudioManager.Instance.StopLoopingAudio("Menu");
+            AudioManager.Instance.PlayLoopingAudio("BGM", AudioConstant.MUSIC_Game, AudioChannel.Music, 0.5f);
 
 
         }

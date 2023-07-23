@@ -7,10 +7,13 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/_StudioAssets/_StudioBranding/RD_SplashScreen.unity
     guid: dfb5d6b67158f2247949d786fb9d508b
+  - enabled: 1
+    path: Assets/_StudioAssets/Scenes/MainMenu.unity
+    guid: acd4514b29c08422fa45f1a68d813880
   - enabled: 1
     path: Assets/_StudioAssets/Scenes/FinalMap.unity
     guid: 884c49b83519b8a43babace612dec99b
