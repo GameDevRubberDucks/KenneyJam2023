@@ -10492,6 +10492,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5027275224391040143, guid: bb36bd4c34f953b4d9b1c5d30f20cec9, type: 3}
+      propertyPath: m_NumPlayers
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027275224391040143, guid: bb36bd4c34f953b4d9b1c5d30f20cec9, type: 3}
+      propertyPath: m_SceneLoader
+      value: 
+      objectReference: {fileID: 2106058957}
+    - target: {fileID: 5027275224391040143, guid: bb36bd4c34f953b4d9b1c5d30f20cec9, type: 3}
       propertyPath: m_SpawnLocations.Array.data[0]
       value: 
       objectReference: {fileID: 479326047}

@@ -62,6 +62,8 @@ namespace RubberDucks.KenneyJam.GameManager
         [SerializeField] private Timer m_GameTimer = new Timer();
         [SerializeField] private float m_GameDuration = 180.0f;
 
+        [SerializeField] private SceneLoader m_SceneLoader = default;
+
         //--- Unity Methods ---//
         private void OnValidate()
         {
@@ -74,9 +76,15 @@ namespace RubberDucks.KenneyJam.GameManager
             StartGame();
 
         }
+
         private void Update()
         {
             m_GameTimer.UpdateTimer(Time.deltaTime);
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                m_SceneLoader.LoadSceneByName("MainMenu");
+            }
         }
 
         //--- Public Methods ---//
