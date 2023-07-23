@@ -11,7 +11,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace RubberDucks.ProjectName.Module
+namespace RubberDucks.Utilities
 {
 	public class ForceBillboard : MonoBehaviour
 	{

@@ -127,8 +127,6 @@ namespace RubberDucks.KenneyJam.Player
 
         public void TryTransform(bool toTruck)
         {
-            Debug.Log("Trying transform for player with index " + m_PlayerIndex);
-
             if (m_InteractionsComp.m_IsCarrying)
             {
                 toTruck = true;
