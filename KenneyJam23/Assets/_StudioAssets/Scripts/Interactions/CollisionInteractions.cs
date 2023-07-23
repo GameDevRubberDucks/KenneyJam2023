@@ -35,14 +35,23 @@ namespace RubberDucks.KenneyJam.Interactions
         [SerializeField] private PlayerController m_PlayerController = default;
         [SerializeField] private PlayerInvincibility m_PlayerInvincibility = default;
         [SerializeField] private Timer m_PickupHeldTimer = default;
+        [SerializeField] private GameObject m_HoldingTreasureIndicator = default;
 
         //--- Unity Methods ---//
+        private void Start()
+        {
+            m_HoldingTreasureIndicator.transform.parent = null;
+        }
+
         private void Update()
         {
             if (m_IsCarrying && m_CurrentPickup.Count != 0 && m_CurrentPickup[0].CarryPointsRemaining != 0)
             {
                 m_PickupHeldTimer.UpdateTimer(Time.deltaTime);
             }
+
+            m_HoldingTreasureIndicator.transform.position = transform.position;
+            m_HoldingTreasureIndicator.SetActive(m_IsCarrying);
         }
 
         //--- Public Methods ---//
