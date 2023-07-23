@@ -93,7 +93,7 @@ namespace RubberDucks.KenneyJam.Interactions
 
                 Debug.Log("Player Collision");
                 //DropItem(false, collision.gameObject);
-                if (m_CurrentPickup.Count > 0)
+                if (m_CurrentPickup.Count > 0 && collision.rigidbody.velocity.magnitude >= collision.gameObject.GetComponent<PlayerController>().DashThreshold)
                 {
                     m_CurrentPickup[0].GetComponent<Pickup>().UpdatePickupStatus();
                     m_CurrentPickup.Clear();
