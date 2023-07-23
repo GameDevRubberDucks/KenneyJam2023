@@ -22,7 +22,7 @@ using RubberDucks.KenneyJam.Player;
 
 namespace RubberDucks.KenneyJam.GameManager
 {
-    public class GameManager : PersistentSingleton<GameManager>
+    public class GameManager : Singleton<GameManager>
     {
         //--- Events ---//
         [System.Serializable]
@@ -47,12 +47,12 @@ namespace RubberDucks.KenneyJam.GameManager
         }
 
         //--- Public Variables ---//
-
+        public static int m_NumPlayers = 4;
         //--- Protected Variables 
 
         //--- Private Variables ---//
         [Header("Player Variables")]
-        [SerializeField] private int m_NumPlayers = 4;
+        //public static int m_NumPlayers = 4;
         [SerializeField] private int m_MaxPlayers = 4;
         [SerializeField] private int m_CurrentPlayers = 0;
         Dictionary<int, GameObject> m_PlayerList = new Dictionary<int, GameObject>();
@@ -69,6 +69,7 @@ namespace RubberDucks.KenneyJam.GameManager
 
         private void Start()
         {
+            Time.timeScale = 1.0f;
             StartGame();
 
         }
