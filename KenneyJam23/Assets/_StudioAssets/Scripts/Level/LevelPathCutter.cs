@@ -8,10 +8,12 @@
  * - Dan
 */
 
-using RubberDucks.KenneyJam.Interactions;
-using RubberDucks.KenneyJam.Player;
 using UnityEngine;
 using UnityEngine.Events;
+
+using RubberDucks.Utilities.Audio;
+using RubberDucks.KenneyJam.Player;
+using RubberDucks.KenneyJam.Interactions;
 
 namespace RubberDucks.KenneyJam.Level
 {
@@ -62,6 +64,7 @@ namespace RubberDucks.KenneyJam.Level
                 if (other.TryGetComponent<LevelForestCollider>(out LevelForestCollider forestCollider))
                 {
                     Instantiate(m_TreeDestroyPS, other.transform.position + new Vector3(0.0f,7.0f,0.0f), Quaternion.Euler(90.0f,0.0f,0.0f)).Play();
+                    //AudioManager.Instance.PlayOneShotAudio(AudioConstant.SFX_BreakTree);
                     forestCollider.ClearForest();
                 }
             }

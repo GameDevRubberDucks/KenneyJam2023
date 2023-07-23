@@ -16,9 +16,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 using RubberDucks.Utilities;
-using RubberDucks.KenneyJam.Interactions;
+using RubberDucks.Utilities.Audio;
 using RubberDucks.KenneyJam.Level;
 using RubberDucks.Utilities.Timing;
+using RubberDucks.KenneyJam.Interactions;
 
 namespace RubberDucks.KenneyJam.Player
 {
@@ -103,6 +104,7 @@ namespace RubberDucks.KenneyJam.Player
             Vector3 m_velDir = Vector3.Normalize(new Vector3(Input.GetAxis(m_InputAxisX), 0.0f, Input.GetAxis(m_InputAxisZ)));
             if (Input.GetAxisRaw(m_InputAxisX) != 0 || Input.GetAxisRaw(m_InputAxisZ) != 0)
             {
+                //AudioManager.Instance.PlayLoopingAudio("Accel",AudioConstant.SFX_Accel,AudioChannel.SFX, 0.2f);
                 m_LastLookDir = m_velDir;
             }
             this.GetComponent<Rigidbody>().velocity += m_Acceleration * m_velDir * Time.deltaTime * speedMultiplier;
@@ -115,6 +117,7 @@ namespace RubberDucks.KenneyJam.Player
                 m_CanDash = false;
                 m_DashTimer.StartTimer(m_DashCooldown);
                 this.GetComponent<Rigidbody>().velocity += m_DashSpeed * m_LastLookDir;
+                AudioManager.Instance.PlayOneShotAudio(AudioConstant.SFX_Dash);
             }
         }
 
@@ -127,6 +130,7 @@ namespace RubberDucks.KenneyJam.Player
             m_TransformInput = "Dash" + playerInd.ToString();
             m_PlayerList = playerList;
 
+            //AudioManager.Instance.PlayLoopingAudio("Engine", AudioConstant.SFX_Engine, AudioChannel.SFX, 0.5f);
             ApplyPlayerColours();
         }
 

@@ -4,23 +4,17 @@ namespace RubberDucks.Utilities.Audio
 {
 	public enum AudioConstant
 	{
-		SFX_Arrow,
-		SFX_Coin,
-		SFX_Damage,
-		SFX_Death,
-		SFX_Defeat,
-		SFX_Fight,
-		SFX_Fire,
-		SFX_Purchase,
-		SFX_Skeleton,
-		SFX_Spider,
-		SFX_Spike,
-		SFX_Zombie,
-		SFX_UI_Decline,
-		SFX_Tada_Fanfare_F,
-		CHIPTUNE_Loop_The_Bards_Tale,
-		CHIPTUNE_Loop_The_Old_Tower_Inn,
-		SFX_RoomPlaceOrMove,
+		SFX_Crash,
+		SFX_LosePickup,
+		SFX_Engine,
+		SFX_Dash,
+		SFX_BreakTree,
+		SFX_Pickup,
+		SFX_DropOff,
+		SFX_PickupZone,
+		MUSIC_Game,
+		MUSIC_Menu,
+		SFX_Accel,
 
 		None
 	}
