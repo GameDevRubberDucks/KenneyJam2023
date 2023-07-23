@@ -44,11 +44,6 @@ namespace RubberDucks.KenneyJam.Player
             get => m_Score;
             set => m_Score = value;
         }
-        public TextMeshProUGUI PlayerScoreUI
-        {
-            get => m_PlayerScoreUI;
-            set => m_PlayerScoreUI = value;
-        }
 
         public Color PlayerColour => m_PlayerColours[m_PlayerIndex];
 
@@ -79,9 +74,6 @@ namespace RubberDucks.KenneyJam.Player
         [Header("Colours")]
         [SerializeField] private Color[] m_PlayerColours = default;
         [SerializeField] private Outline[] m_PlayerOutlines = default;
-
-        [Header("UI Variables")]
-        [SerializeField] private TextMeshProUGUI m_PlayerScoreUI = default;
 
         [Header("Timers")]
         [SerializeField] private AutomaticTimer m_DashTimer = default;
@@ -122,16 +114,14 @@ namespace RubberDucks.KenneyJam.Player
         }
 
         //--- Public Methods ---//
-        public void InitializePlayer(int playerInd, Dictionary<int, GameObject> playerList, TextMeshProUGUI playerScoreUI)
+        public void InitializePlayer(int playerInd, Dictionary<int, GameObject> playerList)
         {
             m_PlayerIndex = playerInd;
             m_InputAxisX = "Horizontal" + playerInd.ToString();
             m_InputAxisZ = "Vertical" + playerInd.ToString();
             m_TransformInput = "Dash" + playerInd.ToString();
             m_PlayerList = playerList;
-            m_PlayerScoreUI = playerScoreUI;
 
-            this.Events.OnPlayerScoreChange.AddListener(UpdateScoreUI);
             ApplyPlayerColours();
         }
 
@@ -157,7 +147,7 @@ namespace RubberDucks.KenneyJam.Player
                 arrowSprite.color = PlayerColour;
             }
 
-            foreach(var outline in m_PlayerOutlines)
+            foreach (var outline in m_PlayerOutlines)
             {
                 outline.OutlineColor = PlayerColour;
             }
@@ -211,11 +201,6 @@ namespace RubberDucks.KenneyJam.Player
             vec.Normalize();
             arrow.transform.forward = vec;
 
-        }
-
-        private void UpdateScoreUI()
-        {
-            m_PlayerScoreUI.text = ($"P{PlayerIndex + 1}: {m_Score}");
         }
 
         private void ToggleDash()
