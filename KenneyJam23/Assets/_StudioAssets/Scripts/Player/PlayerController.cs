@@ -35,7 +35,7 @@ namespace RubberDucks.KenneyJam.Player
         //--- Properties ---//
         public int PlayerIndex
         {
-            get => m_PlayerIndex; 
+            get => m_PlayerIndex;
             set => m_PlayerIndex = value;
         }
         public int Score
@@ -48,6 +48,8 @@ namespace RubberDucks.KenneyJam.Player
             get => m_PlayerScoreUI;
             set => m_PlayerScoreUI = value;
         }
+
+        public Color PlayerColour => m_PlayerColours[m_PlayerIndex];
         //--- Public Variables ---//
 
         //--- Protected Variables ---//
@@ -140,7 +142,7 @@ namespace RubberDucks.KenneyJam.Player
 
         public void ApplyPlayerColours()
         {
-            foreach(var arrowSprite in arrow.GetComponentsInChildren<SpriteRenderer>()) 
+            foreach (var arrowSprite in arrow.GetComponentsInChildren<SpriteRenderer>())
             {
                 arrowSprite.color = m_PlayerColours[m_PlayerIndex];
             }
