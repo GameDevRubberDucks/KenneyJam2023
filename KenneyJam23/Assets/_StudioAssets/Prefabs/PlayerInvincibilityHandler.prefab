@@ -60,6 +60,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Transparency: 0.5
+  m_Shield: {fileID: 0}
   m_ColliderObject: {fileID: 0}
   m_NormalLayer: Player
   m_InvincibleLayer: Invincible
@@ -86,7 +87,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   m_SetDurationFromOtherScript: 0
-  m_Duration: 3
+  m_Duration: 1
   m_ShouldLoop: 0
   m_AutomaticStartStage: 2
   m_AutomaticUpdateStage: 0

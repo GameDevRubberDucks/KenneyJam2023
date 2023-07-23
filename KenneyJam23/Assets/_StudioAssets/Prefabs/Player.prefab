@@ -243,9 +243,9 @@ MonoBehaviour:
   m_TransformInput: 
   m_Acceleration: 300
   m_BulldozerSpeedMultiplier: 0.9
-  m_DashCooldown: 5
-  m_DashSpeed: 300
-  m_DashThreshold: 45
+  m_DashCooldown: 1
+  m_DashSpeed: 100
+  m_DashThreshold: 20
   m_TruckVisuals: {fileID: 3337284866968179385}
   m_BulldozerVisuals: {fileID: 3387125402204788345}
   m_ForestCutterComp: {fileID: 8578420915797595218}
