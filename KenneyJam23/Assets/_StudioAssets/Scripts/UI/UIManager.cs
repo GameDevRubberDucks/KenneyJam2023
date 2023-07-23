@@ -19,8 +19,7 @@ namespace RubberDucks.KenneyJam.UI
         [SerializeField] private TextMeshProUGUI timerText;
 
         [Header("Player Information UI Elements")]
-        [SerializeField] private List<Image> playerIcon;
-        [SerializeField] private List<TextMeshProUGUI> playerScore;
+        [SerializeField] private List<GameObject> PlayerInfoUI;
 
         // Start is called before the first frame update
         void Start()
@@ -29,17 +28,17 @@ namespace RubberDucks.KenneyJam.UI
             //using a foreach loop because playerlist is dictionary and refering it in for loop is a giant pain.
             foreach (var player in GameManager.GameManager.Instance.PlayerList)
             {
-                playerIcon[i].color = player.Value.GetComponent<PlayerController>().PlayerColour;
-                //playerScore[i].color = player.Value.GetComponent<PlayerController>().PlayerColour;
-
-                //restart the counter
-                if (i > GameManager.GameManager.Instance.PlayerList.Count)
+                PlayerInfoUI[i].transform.Find("Icon").GetComponent<Image>().color =
+                    player.Value.GetComponent<PlayerController>().PlayerColour;
+                i++;
+            }
+            if (i < 4)
+            {
+                for (int j = i; j < 4; j++)
                 {
-                    i = 0;
-                }
-                else
-                {
-                    i++;
+                    PlayerInfoUI[j].GetComponent<Image>().color = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                    PlayerInfoUI[j].transform.Find("Icon").GetComponent<Image>().color = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                    PlayerInfoUI[j].transform.Find("Score").GetComponent<TextMeshProUGUI>().color = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
                 }
             }
         }
@@ -64,7 +63,7 @@ namespace RubberDucks.KenneyJam.UI
             int i = 0;
             foreach (var player in GameManager.GameManager.Instance.PlayerList)
             {
-                playerScore[i].text = player.Value.GetComponent<PlayerController>().Score.ToString();
+                PlayerInfoUI[i].transform.Find("Score").GetComponent<TextMeshProUGUI>().text = player.Value.GetComponent<PlayerController>().Score.ToString();
 
                 //restart the counter
                 if (i > GameManager.GameManager.Instance.PlayerList.Count)

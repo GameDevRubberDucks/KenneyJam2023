@@ -1897,6 +1897,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6679172314723107467, guid: be24e58118bf4435fa6af4264bf9102c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6679172314723107468, guid: be24e58118bf4435fa6af4264bf9102c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3800,6 +3804,10 @@ PrefabInstance:
     - target: {fileID: 1566447377147042082, guid: bb36bd4c34f953b4d9b1c5d30f20cec9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027275224391040143, guid: bb36bd4c34f953b4d9b1c5d30f20cec9, type: 3}
+      propertyPath: m_NumPlayers
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5027275224391040143, guid: bb36bd4c34f953b4d9b1c5d30f20cec9, type: 3}
       propertyPath: m_SpawnLocations.Array.data[0]
