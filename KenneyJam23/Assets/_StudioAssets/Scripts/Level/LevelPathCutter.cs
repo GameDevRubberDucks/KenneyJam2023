@@ -39,6 +39,7 @@ namespace RubberDucks.KenneyJam.Level
         //--- Private Variables ---//
         [SerializeField] private PlayerController m_PlayerController = default;
         [SerializeField] private CollisionInteractions m_CollisionInteractions = default;
+        [SerializeField] private ParticleSystem m_TreeDestroyPS = default;
 
         private bool m_CanCutTrees = false;
 
@@ -60,6 +61,7 @@ namespace RubberDucks.KenneyJam.Level
             {
                 if (other.TryGetComponent<LevelForestCollider>(out LevelForestCollider forestCollider))
                 {
+                    Instantiate(m_TreeDestroyPS, other.transform.position + new Vector3(0.0f,7.0f,0.0f), Quaternion.Euler(90.0f,0.0f,0.0f)).Play();
                     forestCollider.ClearForest();
                 }
             }

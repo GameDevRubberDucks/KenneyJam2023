@@ -18,6 +18,7 @@ using UnityEngine.Events;
 using RubberDucks.Utilities;
 using RubberDucks.KenneyJam.Interactions;
 using RubberDucks.KenneyJam.Level;
+using RubberDucks.Utilities.Timing;
 
 namespace RubberDucks.KenneyJam.Player
 {
@@ -63,6 +64,8 @@ namespace RubberDucks.KenneyJam.Player
         [Header("Movement Variables")]
         [SerializeField] private float m_Acceleration = 300.0f;
         [SerializeField] private float m_BulldozerSpeedMultiplier = 0.5f;
+        [SerializeField] private float m_DashCooldown = 5.0f;
+        [SerializeField] private float m_DashSpeed = 300.0f;
 
         [Header("Vehicle Components")]
         [SerializeField] private GameObject m_TruckVisuals = default;
@@ -76,6 +79,10 @@ namespace RubberDucks.KenneyJam.Player
         [Header("UI Variables")]
         [SerializeField] private TextMeshProUGUI m_PlayerScoreUI = default;
 
+        [Header("Timers")]
+        [SerializeField] private AutomaticTimer m_DashTimer = default;
+        [SerializeField] private bool m_CanDash = true;
+
         private Vector3 m_LastLookDir = Vector3.forward;
         private bool m_IsTruckForm = true;
 
@@ -86,6 +93,7 @@ namespace RubberDucks.KenneyJam.Player
         private void Awake()
         {
             TryTransform(false);
+            m_DashTimer.m_Events.OnFinished.AddListener(ToggleDash);
         }
 
         private void Update()
@@ -101,10 +109,12 @@ namespace RubberDucks.KenneyJam.Player
 
             WayFinder();
 
-            //if (Input.GetButtonDown(m_TransformInput))
-            //{
-            //    TryTransform(!m_IsTruckForm);
-            //}
+            if (Input.GetButtonDown(m_TransformInput) && m_CanDash)
+            {
+                m_CanDash = false;
+                m_DashTimer.StartTimer(m_DashCooldown);
+                this.GetComponent<Rigidbody>().velocity += m_DashSpeed * m_LastLookDir;
+            }
         }
 
         //--- Public Methods ---//
@@ -113,7 +123,7 @@ namespace RubberDucks.KenneyJam.Player
             m_PlayerIndex = playerInd;
             m_InputAxisX = "Horizontal" + playerInd.ToString();
             m_InputAxisZ = "Vertical" + playerInd.ToString();
-            m_TransformInput = "Transform" + playerInd.ToString();
+            m_TransformInput = "Dash" + playerInd.ToString();
             m_PlayerList = playerList;
             m_PlayerScoreUI = playerScoreUI;
 
@@ -201,6 +211,11 @@ namespace RubberDucks.KenneyJam.Player
         private void UpdateScoreUI()
         {
             m_PlayerScoreUI.text = ($"P{PlayerIndex + 1}: {m_Score}");
+        }
+
+        private void ToggleDash()
+        {
+            m_CanDash = true;
         }
 
     }
