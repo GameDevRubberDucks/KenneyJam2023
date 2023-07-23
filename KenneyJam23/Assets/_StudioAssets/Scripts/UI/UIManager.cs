@@ -94,6 +94,12 @@ namespace RubberDucks.KenneyJam.UI
             int i = 0;
             int tempHighScore = 0;
 
+            var outlines = FindObjectsOfType<Outline>();
+            foreach (var outline in outlines) 
+            {
+                outline.enabled = false;
+            }
+
             foreach (var player in GameManager.GameManager.Instance.PlayerList)
             {
 
