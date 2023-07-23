@@ -36,7 +36,7 @@ namespace RubberDucks.KenneyJam.Player
         //--- Properties ---//
         public int PlayerIndex
         {
-            get => m_PlayerIndex; 
+            get => m_PlayerIndex;
             set => m_PlayerIndex = value;
         }
         public int Score
@@ -152,7 +152,7 @@ namespace RubberDucks.KenneyJam.Player
 
         public void ApplyPlayerColours()
         {
-            foreach(var arrowSprite in arrow.GetComponentsInChildren<SpriteRenderer>()) 
+            foreach (var arrowSprite in arrow.GetComponentsInChildren<SpriteRenderer>())
             {
                 arrowSprite.color = PlayerColour;
             }
