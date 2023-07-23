@@ -72,6 +72,7 @@ namespace RubberDucks.KenneyJam.Player
 
         [Header("Colours")]
         [SerializeField] private Color[] m_PlayerColours = default;
+        [SerializeField] private Outline[] m_PlayerOutlines = default;
 
         [Header("UI Variables")]
         [SerializeField] private TextMeshProUGUI m_PlayerScoreUI = default;
@@ -145,7 +146,10 @@ namespace RubberDucks.KenneyJam.Player
                 arrowSprite.color = m_PlayerColours[m_PlayerIndex];
             }
 
-            // TODO: Change the player vehicle colours as well
+            foreach(var outline in m_PlayerOutlines)
+            {
+                outline.OutlineColor = m_PlayerColours[m_PlayerIndex];
+            }
         }
 
         //--- Protected Methods ---//
