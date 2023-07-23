@@ -15,7 +15,6 @@ using RubberDucks.Utilities;
 using System;
 using System.Collections.Generic;
 using RubberDucks.KenneyJam.Player;
-using FullscreenEditor;
 using TMPro;
 
 namespace RubberDucks.KenneyJam.Jam

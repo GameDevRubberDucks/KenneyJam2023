@@ -7,9 +7,10 @@
  * Author(s): 
  * - Kody Wood
 */
+
 using System.Reflection;
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 
 namespace RubberDucks.Utilities
 {
