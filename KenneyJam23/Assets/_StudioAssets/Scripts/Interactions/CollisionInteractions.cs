@@ -33,6 +33,7 @@ namespace RubberDucks.KenneyJam.Interactions
         //--- Private Variables ---//
         [SerializeField] private List<Pickup> m_CurrentPickup;
         [SerializeField] private PlayerController m_PlayerController = default;
+        [SerializeField] private PlayerInvincibility m_PlayerInvincibility = default;
         [SerializeField] private Timer m_PickupHeldTimer = default;
 
         //--- Unity Methods ---//
@@ -109,6 +110,7 @@ namespace RubberDucks.KenneyJam.Interactions
                 m_IsCarrying = true;
 
                 m_PlayerController.TryTransform(true);
+                m_PlayerInvincibility.TriggerInvincibility();
             }
         }
 

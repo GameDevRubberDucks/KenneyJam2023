@@ -49,6 +49,9 @@ namespace RubberDucks.KenneyJam.Player
             get => m_PlayerScoreUI;
             set => m_PlayerScoreUI = value;
         }
+
+        public Color PlayerColour => m_PlayerColours[m_PlayerIndex];
+
         //--- Public Variables ---//
 
         //--- Protected Variables ---//
@@ -75,6 +78,7 @@ namespace RubberDucks.KenneyJam.Player
 
         [Header("Colours")]
         [SerializeField] private Color[] m_PlayerColours = default;
+        [SerializeField] private Outline[] m_PlayerOutlines = default;
 
         [Header("UI Variables")]
         [SerializeField] private TextMeshProUGUI m_PlayerScoreUI = default;
@@ -133,8 +137,6 @@ namespace RubberDucks.KenneyJam.Player
 
         public void TryTransform(bool toTruck)
         {
-            Debug.Log("Trying transform for player with index " + m_PlayerIndex);
-
             if (m_InteractionsComp.m_IsCarrying)
             {
                 toTruck = true;
@@ -152,10 +154,13 @@ namespace RubberDucks.KenneyJam.Player
         {
             foreach(var arrowSprite in arrow.GetComponentsInChildren<SpriteRenderer>()) 
             {
-                arrowSprite.color = m_PlayerColours[m_PlayerIndex];
+                arrowSprite.color = PlayerColour;
             }
 
-            // TODO: Change the player vehicle colours as well
+            foreach(var outline in m_PlayerOutlines)
+            {
+                outline.OutlineColor = PlayerColour;
+            }
         }
 
         //--- Protected Methods ---//
