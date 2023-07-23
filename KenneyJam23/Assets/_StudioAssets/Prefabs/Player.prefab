@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 2410998985746952556}
   - component: {fileID: 6146259549629782484}
   - component: {fileID: -6037169466691265759}
+  - component: {fileID: 6467573284396530364}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -237,6 +238,8 @@ MonoBehaviour:
   m_TransformInput: 
   m_Acceleration: 300
   m_BulldozerSpeedMultiplier: 0.9
+  m_DashCooldown: 5
+  m_DashSpeed: 300
   m_TruckVisuals: {fileID: 3337284866968179385}
   m_BulldozerVisuals: {fileID: 3387125402204788345}
   m_ForestCutterComp: {fileID: 8578420915797595218}
@@ -247,6 +250,8 @@ MonoBehaviour:
   - {r: 0.44419003, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.8657135, b: 0, a: 1}
   m_PlayerScoreUI: {fileID: 0}
+  m_DashTimer: {fileID: 6467573284396530364}
+  m_CanDash: 1
   arrow: {fileID: 5469343963091466140}
 --- !u!54 &2410998985746952554
 Rigidbody:
@@ -318,6 +323,33 @@ MonoBehaviour:
   m_SetDurationFromOtherScript: 0
   m_Duration: 1
   m_ShouldLoop: 1
+--- !u!114 &6467573284396530364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2410998985746952553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e8dc7ba1fd98f4aaf6f05684755d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    OnFinished:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStoppedEarly:
+      m_PersistentCalls:
+        m_Calls: []
+    OnTimeLeftUpdated:
+      m_PersistentCalls:
+        m_Calls: []
+  m_SetDurationFromOtherScript: 0
+  m_Duration: 10
+  m_ShouldLoop: 0
+  m_AutomaticStartStage: 2
+  m_AutomaticUpdateStage: 0
 --- !u!1 &2640811067613911220
 GameObject:
   m_ObjectHideFlags: 0
