@@ -44,6 +44,10 @@ namespace RubberDucks.KenneyJam.Player
             get => m_Score;
             set => m_Score = value;
         }
+        public float DashThreshold
+        {
+            get => m_DashThreshold;
+        }
 
         public Color PlayerColour => m_PlayerColours[m_PlayerIndex];
 
@@ -64,6 +68,7 @@ namespace RubberDucks.KenneyJam.Player
         [SerializeField] private float m_BulldozerSpeedMultiplier = 0.5f;
         [SerializeField] private float m_DashCooldown = 5.0f;
         [SerializeField] private float m_DashSpeed = 300.0f;
+        [SerializeField] private float m_DashThreshold = 45.0f;
 
         [Header("Vehicle Components")]
         [SerializeField] private GameObject m_TruckVisuals = default;
@@ -105,7 +110,7 @@ namespace RubberDucks.KenneyJam.Player
 
             WayFinder();
 
-            if (Input.GetButtonDown(m_TransformInput) && m_CanDash)
+            if (Input.GetButtonDown(m_TransformInput) && m_CanDash && !m_IsTruckForm)
             {
                 m_CanDash = false;
                 m_DashTimer.StartTimer(m_DashCooldown);
