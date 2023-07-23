@@ -29,6 +29,7 @@ namespace RubberDucks.KenneyJam.Player
         [Header("Rendering")]
         [SerializeField] private MeshRenderer[] m_VehicleRenderers = default;
         [SerializeField][Range(0.0f, 1.0f)] private float m_Transparency = 0.5f;
+        [SerializeField] private GameObject m_Shield = default;
 
         [Header("Collision")]
         [SerializeField] private GameObject m_ColliderObject = default;
@@ -66,13 +67,15 @@ namespace RubberDucks.KenneyJam.Player
         {
             m_ColliderObject.layer = LayerMask.NameToLayer(isInvincible ? m_InvincibleLayer : m_NormalLayer);
 
-            foreach(var renderer in m_VehicleRenderers)
-            {
-                foreach(var mat in renderer.materials)
-                {
-                    mat.color = mat.color.CopyWithNewAlpha(isInvincible ? m_Transparency : 1.0f);
-                }
-            }
+            m_Shield.SetActive(isInvincible);
+
+            //foreach(var renderer in m_VehicleRenderers)
+            //{
+            //    foreach(var mat in renderer.materials)
+            //    {
+            //        mat.color = mat.color.CopyWithNewAlpha(isInvincible ? m_Transparency : 1.0f);
+            //    }
+            //}
         }
     }
 }
