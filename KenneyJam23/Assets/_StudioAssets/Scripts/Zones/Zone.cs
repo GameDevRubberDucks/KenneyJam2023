@@ -13,6 +13,7 @@ using RubberDucks.KenneyJam.Interactions;
 
 using UnityEngine;
 using UnityEngine.Events;
+using RubberDucks.Utilities.Timing;
 
 namespace RubberDucks.KenneyJam.Zones
 {
@@ -30,10 +31,16 @@ namespace RubberDucks.KenneyJam.Zones
 
 		[SerializeField] private Spawning m_ZoneSpawner;
 
+		[Header("Ping System")]
+		[SerializeField] private AutomaticTimer m_PingTimer = default;
+		[SerializeField] private ParticleSystem m_PingParticles = default;
+
 		//--- Unity Methods ---//
 		public void Start()
 		{
 			m_ZoneSpawner = GameObject.FindObjectOfType<Spawning>();
+
+			m_PingTimer.m_Events.OnFinished.AddListener(OnPingTimerDone);
 		}
 
 		//--- Public Methods ---//
@@ -57,5 +64,9 @@ namespace RubberDucks.KenneyJam.Zones
 		//--- Protected Methods ---//
 
 		//--- Private Methods ---//
+		private void OnPingTimerDone()
+		{
+			m_PingParticles.Play();	
+		}
 	}
 }
