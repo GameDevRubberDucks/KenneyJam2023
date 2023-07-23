@@ -16,6 +16,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 using RubberDucks.Utilities;
+using RubberDucks.Utilities.Audio;
 using RubberDucks.Utilities.Timing;
 using RubberDucks.KenneyJam.Jam;
 using RubberDucks.KenneyJam.Player;
@@ -95,6 +96,10 @@ namespace RubberDucks.KenneyJam.GameManager
             m_GameTimer.StartTimer(m_GameDuration);
             m_GameTimer.m_Events.OnFinished.AddListener(CheckWinner);
             Debug.Log(m_PlayerList.Count);
+
+            AudioManager.Instance.PlayLoopingAudio("BGM",AudioConstant.MUSIC_Game,AudioChannel.Music, 0.5f);
+
+
         }
 
         private void CheckWinner()

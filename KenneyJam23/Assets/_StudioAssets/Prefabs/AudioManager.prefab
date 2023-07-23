@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4880557546803495976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4880557546803495978}
+  - component: {fileID: 4880557546803495979}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4880557546803495978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4880557546803495976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.91969657, y: 1.6790924, z: 0.49440813}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4880557546803495979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4880557546803495976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c881a92cb1f234994a96c2dc51f213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InitialAudioSourceCount: 10
+  m_AudioClips:
+  - {fileID: 8300000, guid: e8121247d6856604b873aa8e20b4b5ed, type: 3}
+  - {fileID: 8300000, guid: 5141ede7c2f099a48a4b21facf97f645, type: 3}
+  - {fileID: 8300000, guid: e11ca21b616c00640a6477387b783e07, type: 3}
+  - {fileID: 8300000, guid: 123d064f73ecdca49afc57425afc0521, type: 3}
+  - {fileID: 8300000, guid: 8597f63f174134c4685607875a974a8e, type: 3}
+  - {fileID: 8300000, guid: e10a1a96d82bed2469d31ab8dec5b7b8, type: 3}
+  - {fileID: 8300000, guid: 3a40d5dc90c07e0408934f8d3bb4c8aa, type: 3}
+  - {fileID: 8300000, guid: 96913501df87be34296b6f28a9d30308, type: 3}
+  - {fileID: 8300000, guid: 86e8f380e7d73a14c9f7e960973b3f2c, type: 3}
+  - {fileID: 8300000, guid: b4563fa0e4b103c4489adfc407bca000, type: 3}
+  - {fileID: 8300000, guid: ce85d24b47d85f646931c4aaaef78306, type: 3}
+  m_MasterVolume: 1
+  m_SFXVolume: 1
+  m_MusicVolume: 1
+  m_IsSFXMuted: 0
+  m_IsMusicMuted: 0

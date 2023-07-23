@@ -16,6 +16,7 @@ using UnityEngine.Events;
 
 using System.Collections.Generic;
 
+using RubberDucks.Utilities.Audio;
 using RubberDucks.KenneyJam.Player;
 using RubberDucks.Utilities.Timing;
 
@@ -65,6 +66,7 @@ namespace RubberDucks.KenneyJam.Interactions
             {
                 if (m_CurrentPickup.Count > 0)
                 {
+                    AudioManager.Instance.PlayOneShotAudio(AudioConstant.SFX_DropOff);
                     IncrementScoreDropOff(m_CurrentPickup[0].DropOffPoints + m_CurrentPickup[0].CarryPointsRemaining);
                     Destroy(m_CurrentPickup[0]);
 
@@ -81,6 +83,7 @@ namespace RubberDucks.KenneyJam.Interactions
             }
             else if (other.gameObject.CompareTag("Collect"))
             {
+                AudioManager.Instance.PlayOneShotAudio(AudioConstant.SFX_PickupZone);
                 other.gameObject.GetComponent<Zone>().CollideWithZone(m_IsCarrying);
             }
 
@@ -90,11 +93,12 @@ namespace RubberDucks.KenneyJam.Interactions
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-
+                AudioManager.Instance.PlayOneShotAudio(AudioConstant.SFX_Crash);
                 Debug.Log("Player Collision");
                 //DropItem(false, collision.gameObject);
                 if (m_CurrentPickup.Count > 0 && collision.rigidbody.velocity.magnitude >= collision.gameObject.GetComponent<PlayerController>().DashThreshold)
                 {
+                    AudioManager.Instance.PlayOneShotAudio(AudioConstant.SFX_LosePickup);
                     m_CurrentPickup[0].GetComponent<Pickup>().UpdatePickupStatus();
                     m_CurrentPickup.Clear();
 
@@ -109,6 +113,7 @@ namespace RubberDucks.KenneyJam.Interactions
             else if (collision.gameObject.CompareTag("Pickup"))
             {
                 //CollectItem(false, collision.gameObject);
+                AudioManager.Instance.PlayOneShotAudio(AudioConstant.SFX_Pickup);
                 collision.gameObject.GetComponent<Pickup>().UpdatePickupStatus();
                 collision.gameObject.transform.SetParent(transform);
 

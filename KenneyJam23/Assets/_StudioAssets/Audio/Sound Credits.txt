@@ -1,0 +1,33 @@
+Kenney Jam 2023 - Dozer Derby: Jungle Jewels - Sound Effects
+
+Car Engine:
+https://pixabay.com/sound-effects/search/engine-idle/ diesel-truck-idling-frontwav-14418
+
+Dash:
+https://pixabay.com/sound-effects/search/revving/ - car-starting-and-accelerating
+
+Crash:
+Kenney Asset - ImpactPlank_Medium_001
+
+Lose Treasure:
+Kenney Asset - jingles_STEEL05
+
+Drop Off:
+Kenney Asset - jingles_STEEL10
+
+Pick Up:
+Kenney Asset - jingles_STEEL04
+
+Break Tree:
+Kenney Asset - footstep_wood_004
+
+Pickup Zone:
+Kenney Asset - jingles_STEEL11
+
+Music:
+https://opengameart.org/content/jungle
+
+https://opengameart.org/content/kb-jungle-friends
+
+Car accelerating:
+https://pixabay.com/sound-effects/search/accelerating/
